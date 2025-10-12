@@ -8,7 +8,7 @@ import java.awt.Color;
 
 /**
  *
- * @author clari
+ * @author Marlon
  */
 public class MmljFrmPrincipal extends javax.swing.JFrame {
 

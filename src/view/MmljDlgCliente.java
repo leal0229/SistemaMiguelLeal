@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author clari
+ * @author Marlon
  */
 public class MmljDlgCliente extends javax.swing.JDialog {
 

@@ -12,7 +12,7 @@ import tools.Util;
 
 /**
  *
- * @author clari
+ * @author Marlon
  */
 public class MmljDlgVendedor extends javax.swing.JDialog {
 

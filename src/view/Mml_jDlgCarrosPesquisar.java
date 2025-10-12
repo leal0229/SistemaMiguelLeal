@@ -10,18 +10,23 @@ package view;
  */
 public class Mml_jDlgCarrosPesquisar extends javax.swing.JDialog {
 
-    MmljDlgCarros dlgCarros;
+    private boolean confirmou = false;
+
+    
     /**
-     * Creates new form Mml_jDlgCarrosPesquisar
+     * Creates new form JDlgProdutosPesquisar
      */
+    private MmljDlgCarros mmljDlgCarros;
+    MmljDlgCarros Mml_Controller_carros;
+    
     public Mml_jDlgCarrosPesquisar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
     }
     
-    public void setTelaPai(MmljDlgCarros dlgCarros){
-       this.dlgCarros = dlgCarros;
+    public void setTelaPai(MmljDlgCarros mmljDlgCarros){
+       this.mmljDlgCarros = mmljDlgCarros;
     }
     /**
      * This method is called from within the constructor to initialize the form.

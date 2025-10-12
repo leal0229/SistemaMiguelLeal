@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author clari
+ * @author Marlon
  */
 public class MmljDlgVendasCarros extends javax.swing.JDialog {
 

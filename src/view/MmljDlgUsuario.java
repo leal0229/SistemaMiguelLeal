@@ -13,7 +13,7 @@ import tools.Util;
 
 /**
  *
- * @author clari
+ * @author Marlon
  */
 public class MmljDlgUsuario extends javax.swing.JDialog {
 

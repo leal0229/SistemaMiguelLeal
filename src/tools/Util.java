@@ -51,8 +51,14 @@ public class Util {
     }
 
     public static boolean perguntar(String cad) {
-            JOptionPane.showConfirmDialog(null,cad,"", JOptionPane.YES_NO_OPTION);
-        return true;
+            int perguntar = JOptionPane.showConfirmDialog(null, cad, cad, JOptionPane.YES_NO_OPTION);
+            if(perguntar == JOptionPane.YES_OPTION){
+                return true;
+            }else{
+                return false;
+            }
+    
+  
     }
 
     public static int strToInt(String num) {
@@ -72,7 +78,7 @@ public class Util {
         }
     }
 
-    public static String doubleToStr(String num) {
+    public static String doubleToStr(double num) {
         return String.valueOf(num);
     }
 
