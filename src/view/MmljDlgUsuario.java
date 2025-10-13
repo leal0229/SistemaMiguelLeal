@@ -5,6 +5,7 @@
 package view;
 
 
+import bean.MmlUsuarios;
 import javax.swing.JOptionPane;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
@@ -21,13 +22,37 @@ public class MmljDlgUsuario extends javax.swing.JDialog {
      * Creates new form jDlgUsuario
      */
     public MmljDlgUsuario(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+      super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        setTitle("Cadastro de Usuários");
-        getContentPane().setBackground(Color.WHITE);
-       
+        setTitle("Cadastro de usuarios");
+              
     }
+   public MmlUsuarios viewBean() {
+    MmlUsuarios mmlUsuarios = new MmlUsuarios();
+    int codigo = Util.strToInt(mmljTxtCodigo.getText());
+    mmlUsuarios.setMmlIdUsusario(codigo);
+    mmlUsuarios.setMmlNome(mmljTxtNome.getText());
+    mmlUsuarios.setMmlApelido(mmljTxtApelido.getText());
+    mmlUsuarios.setMmlCpf(mmljFmtCpf.getText());
+    mmlUsuarios.setMmlSenha(mmljPwdSenha.getText());
+    mmlUsuarios.setMmlNivel(mmljCboNivel.getSelectedIndex()); 
+    mmlUsuarios.setMmlAtivo(mmljChbAtivo.isSelected() ? "S" : "N");
+    mmlUsuarios.setMmlDataNas(Util.strToDate(mmljFmtDataNascimento.getText()));
+    return mmlUsuarios;
+}
+
+public void beanView(MmlUsuarios mmlUsuarios) {
+    mmljTxtCodigo.setText(Util.intToStr(mmlUsuarios.getMmlIdUsusario()));
+    mmljTxtNome.setText(mmlUsuarios.getMmlNome());
+    mmljTxtApelido.setText(mmlUsuarios.getMmlApelido());
+    mmljFmtCpf.setText(mmlUsuarios.getMmlCpf());
+    mmljPwdSenha.setText(mmlUsuarios.getMmlSenha());
+    mmljCboNivel.setSelectedIndex(mmlUsuarios.getMmlNivel()); 
+    mmljChbAtivo.setSelected("S".equals(mmlUsuarios.getMmlAtivo()));
+    mmljFmtDataNascimento.setText(Util.dateToStr(mmlUsuarios.getMmlDataNas()));
+}
+
 
    
     /**

@@ -5,6 +5,7 @@
 package view;
 
 
+import bean.MmlVendedor;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
@@ -27,6 +28,29 @@ public class MmljDlgVendedor extends javax.swing.JDialog {
         getContentPane().setBackground(Color.WHITE);
         
     }
+    public MmlVendedor viewBean() {
+    MmlVendedor mmlVendedor = new MmlVendedor();
+    int codigo = Util.strToInt(mml_jTxtCodigo.getText());
+    mmlVendedor.setMmlIdVendedor(codigo);
+    mmlVendedor.setMmlNome(mml_jTxtNome.getText());
+    mmlVendedor.setMmlCredencial(Util.strToInt(mml_jTxtCredencial.getText()));
+    mmlVendedor.setMmlExpediente(mml_jTxtExpediente.getText());
+    mmlVendedor.setMmlCpf(mml_jTxtCpf.getText());
+    mmlVendedor.setMmlAtivo(mml_jCBocAtivo.isSelected() ? "S" : "N");
+    mmlVendedor.setMmlDataNascimente(Util.strToDate(mml_jTxtDataNasc.getText()));
+    return mmlVendedor;
+}
+
+public void beanView(MmlVendedor mmlVendedor) {
+    mml_jTxtCodigo.setText(Util.intToStr(mmlVendedor.getMmlIdVendedor()));
+    mml_jTxtNome.setText(mmlVendedor.getMmlNome());
+    mml_jTxtCredencial.setText(Util.intToStr(mmlVendedor.getMmlCredencial()));
+    mml_jTxtExpediente.setText(mmlVendedor.getMmlExpediente());
+    mml_jTxtCpf.setText(mmlVendedor.getMmlCpf());
+    mml_jCBocAtivo.setSelected("S".equals(mmlVendedor.getMmlAtivo()));
+    mml_jTxtDataNasc.setText(Util.dateToStr(mmlVendedor.getMmlDataNascimente()));
+}
+
 
     
 

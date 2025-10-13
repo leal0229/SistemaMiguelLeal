@@ -39,10 +39,10 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="mml_jTxtIdClientes" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="mml_jLblIdClientes" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+                                  <Component id="mml_jLblIdClientes" min="-2" pref="80" max="-2" attributes="0"/>
+                                  <Component id="mml_jcboClientes" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="mml_jLblValor" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
                                   <Component id="mml_jTxtValor" alignment="0" max="32767" attributes="0"/>
@@ -53,7 +53,23 @@
                                   <Component id="mml_jLblData" min="-2" pref="117" max="-2" attributes="0"/>
                                   <Component id="mml_jTxtData" min="-2" pref="185" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="mml_jLblIdVendedor" min="-2" pref="80" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="mml_jcboVendedor" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="mml_jBtnIncluirProd" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="mml_jBtnAlterarProd" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="mml_jBtnExcluirProd" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
@@ -93,42 +109,61 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="mml_jLblIdClientes" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="mml_jTxtIdClientes" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="mml_jLblIdVendas" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="mml_jTxtIdVendas" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="mml_jTxtIdVendas" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="mml_jcboClientes" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="mml_jLblFormasdePagamento" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="mml_jTxtFormasdePagamento" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="mml_jTxtData" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="mml_jLblFormasdePagamento" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="mml_jTxtFormasdePagamento" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="mml_jTxtData" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Component id="mml_jcboVendedor" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="mml_jLblData" min="-2" max="-2" attributes="0"/>
+                                  <Component id="mml_jLblIdVendedor" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="29" pref="29" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
+                      <EmptySpace pref="27" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="mml_jBtnAlterar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="mml_jBtnExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="mml_jBtnConfirmar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="mml_jBtnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="mml_jBtnPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="mml_jBtnIncluir" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="mml_jLblData" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                      <Component id="mml_jBtnIncluirProd" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="mml_jBtnAlterarProd" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="mml_jBtnExcluirProd" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="27" max="32767" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="mml_jBtnAlterar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="mml_jBtnExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="mml_jBtnConfirmar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="mml_jBtnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="mml_jBtnPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="mml_jBtnIncluir" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -202,11 +237,6 @@
         <Property name="text" type="java.lang.String" value="Id Cliente"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="mml_jTxtIdClientes">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mml_jTxtIdClientesActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="mml_jBtnPesquisar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -271,5 +301,56 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="mml_jLblIdVendedor">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="id vendedor"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="mml_jcboVendedor">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JComboBox&lt;MmlVendedor&gt;()"/>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;MmlVendedor&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="mml_jcboClientes">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JComboBox&lt;MmlCliente&gt;()"/>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;MmlCliente&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="mml_jBtnIncluirProd">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Incluir"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mml_jBtnIncluirProdActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="mml_jBtnAlterarProd">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Alterar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mml_jBtnAlterarProdActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="mml_jBtnExcluirProd">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Excluir"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mml_jBtnExcluirProdActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>

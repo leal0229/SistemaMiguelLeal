@@ -451,10 +451,11 @@ public class MmljDlgCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jbtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnPesquisarActionPerformed
-         Mml_jDlgClientePesquisar dlgClientePesquisar = new Mml_jDlgClientePesquisar(null,true);
-        dlgClientePesquisar.setTelaPai(this);
-        dlgClientePesquisar.setVisible(true);
-       
+        Mml_jDlgClientePesquisar mml_jDlgClientePesquisar = new Mml_jDlgClientePesquisar(null, true);
+        mml_jDlgClientePesquisar.setTelaPai(this);
+        mml_jDlgClientePesquisar.setVisible(true);
+      
+
         
     }//GEN-LAST:event_jbtnPesquisarActionPerformed
 
@@ -467,6 +468,15 @@ public class MmljDlgCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnIncluirPropertyChange
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
+ MmlClienteDao mmlClienteDao = new MmlClienteDao();
+        if (incluir) {
+            mmlClienteDao.insert(viewBean());
+        } else {
+            mmlClienteDao.update(viewBean());
+        }
+        Util.habilitar(false,jTxtCodigo,JTxtNome,jTxtCpf, JTxtRg,jTxtSexo,jTxtDataNasc, jTxtGmail, jTxtcep, jTxtEnderoco, jTxtBairro, jTxtCidade, jTxtTelefone,  jTxtCelular, jTxtDataCad, jBtnConfirmar, jBtnCancelar,  jBtnConfirmar, jBtnCancelar);
+        Util.habilitar(true, jBtnIncluir, jbtnPesquisar);
+        Util.limpar(jTxtCodigo,JTxtNome,jTxtCpf, JTxtRg,jTxtSexo,jTxtDataNasc, jTxtGmail, jTxtcep, jTxtEnderoco, jTxtBairro, jTxtCidade, jTxtTelefone,  jTxtCelular, jTxtDataCad, jBtnConfirmar, jBtnCancelar);
         // TODO add your handling code here:
         
         
@@ -476,8 +486,11 @@ public class MmljDlgCliente extends javax.swing.JDialog {
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         // TODO add your handling code here:
-        Util.habilitar(false, jTxtCodigo,JTxtNome,jTxtCpf, JTxtRg,jTxtSexo,jTxtDataNasc, jTxtGmail, jTxtcep, jTxtEnderoco, jTxtBairro, jTxtCidade, jTxtTelefone,  jTxtCelular, jTxtDataCad);
+       Util.habilitar(false,jTxtCodigo,JTxtNome,jTxtCpf, JTxtRg,jTxtSexo,jTxtDataNasc, jTxtGmail, jTxtcep, jTxtEnderoco, jTxtBairro, jTxtCidade, jTxtTelefone,  jTxtCelular, jTxtDataCad, jBtnConfirmar, jBtnCancelar,  jBtnConfirmar, jBtnCancelar);
         Util.habilitar(true, jBtnIncluir, jbtnPesquisar);
+        Util.limpar(jTxtCodigo,JTxtNome,jTxtCpf, JTxtRg,jTxtSexo,jTxtDataNasc, jTxtGmail, jTxtcep, jTxtEnderoco, jTxtBairro, jTxtCidade, jTxtTelefone,  jTxtCelular, jTxtDataCad, jBtnConfirmar, jBtnCancelar);
+      
+        
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed

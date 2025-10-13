@@ -304,8 +304,8 @@ public class MmljDlgCarros extends javax.swing.JDialog {
       if (Util.perguntar("Excluir?") == true) {
         MmlCarrosDao mmlCarrosDao = new MmlCarrosDao();
         mmlCarrosDao.delete(viewBean()); 
-        Util.habilitar(false, mml_jBtnAlterar, mml_jBtnCancelar, mml_jBtnExcluir);
-        Util.habilitar(true,  mml_jBtnIncluir, mml_jBtnPesquisar);
+        Util.habilitar(true, mml_jBtnAlterar, mml_jBtnCancelar, mml_jBtnExcluir);
+        Util.habilitar(false,  mml_jBtnIncluir, mml_jBtnPesquisar,mml_jBtnAlterar, mml_jBtnExcluir);
         Util.limpar(mml_JLblPrecoVenda, mml_jLblModelo ,mml_JLblCodigo , mml_jLblMarca, mml_jLblCor, mml_jLblAno, mml_jLblPreco);
     }
  
