@@ -6,6 +6,7 @@ package view;
 
 
 import bean.MmlVendedor;
+import dao.MmlClienteDao;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
@@ -17,6 +18,7 @@ import tools.Util;
  */
 public class MmljDlgVendedor extends javax.swing.JDialog {
 
+     private boolean incluir;
     /**
      * Creates new form jDlgVendedor
      */
@@ -325,45 +327,67 @@ public void beanView(MmlVendedor mmlVendedor) {
 
     private void mml_jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jBtnExcluirActionPerformed
         // TODO add your handling code here:
-        int resp = JOptionPane.showConfirmDialog(null, "Confirma Exclusão ?");
-        if (resp == JOptionPane.YES_NO_OPTION) {
-           
-    
-            
+         if (Util.perguntar("Excluir?") == true) {
+            MmlClienteDao mmlClienteDao = new MmlClienteDao();
+            mmlClienteDao.delete(viewBean());
+            Util.habilitar(false, mml_jBtnAlterar, mml_jBtnCancelar, mml_jBtnExcluir);
+            Util.habilitar(true, mml_jBtnIncluir, mml_jBtnPesquisar);
+            Util.limpar( mml_jTxtNome, mml_jTxtExpediente,mml_jTxtDataNasc,mml_jCBocAtivo, mml_jTxtCpf,mml_jTxtCodigo,mml_jTxtCredencial);
         }
+           
+        
+            
+        
     }//GEN-LAST:event_mml_jBtnExcluirActionPerformed
 
     private void mml_jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jBtnIncluirActionPerformed
         // TODO add your handling code here:
-       
+        incluir = true;
+        Util.habilitar(true, mml_jTxtNome, mml_jTxtExpediente,mml_jTxtDataNasc,mml_jCBocAtivo, mml_jTxtCpf,mml_jTxtCodigo,mml_jTxtCredencial, mml_jBtnConfirmar, mml_jBtnCancelar);
+        Util.habilitar(false, mml_jBtnIncluir, mml_jBtnPesquisar);
+        Util.limpar(mml_jTxtNome, mml_jTxtExpediente,mml_jTxtDataNasc,mml_jCBocAtivo, mml_jTxtCpf,mml_jTxtCodigo,mml_jTxtCredencial);
+        mml_jTxtNome.grabFocus();
         
     }//GEN-LAST:event_mml_jBtnIncluirActionPerformed
 
     private void mml_jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jBtnConfirmarActionPerformed
         // TODO add your handling code here:
-        
+         MmlClienteDao mmlClienteDao = new MmlClienteDao();
+        if (incluir) {
+            mmlClienteDao.insert(viewBean());
+        } else {
+            mmlClienteDao.update(viewBean());
+        }
+        Util.habilitar(false,mml_jTxtNome, mml_jTxtExpediente,mml_jTxtDataNasc,mml_jCBocAtivo, mml_jTxtCpf,mml_jTxtCodigo,mml_jTxtCredencial, mml_jBtnConfirmar, mml_jBtnCancelar);
+        Util.habilitar(true,  mml_jBtnIncluir, mml_jBtnPesquisar);
+        Util.limpar(mml_jTxtNome, mml_jTxtExpediente,mml_jTxtDataNasc,mml_jCBocAtivo, mml_jTxtCpf,mml_jTxtCodigo,mml_jTxtCredencial);
     }//GEN-LAST:event_mml_jBtnConfirmarActionPerformed
 
     private void mml_jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jBtnCancelarActionPerformed
         // TODO add your handling code here:
      
-        
-        JOptionPane.showConfirmDialog(null, "Você deseja cancelar?");
-        
-        
+        Util.habilitar(false, mml_jTxtNome, mml_jTxtExpediente,mml_jTxtDataNasc,mml_jCBocAtivo, mml_jTxtCpf,mml_jTxtCodigo,mml_jTxtCredencial, mml_jBtnConfirmar, mml_jBtnCancelar, mml_jBtnAlterar, mml_jBtnExcluir);
+        Util.habilitar(true,  mml_jBtnIncluir, mml_jBtnPesquisar);
+        Util.limpar(mml_jTxtNome, mml_jTxtExpediente,mml_jTxtDataNasc,mml_jCBocAtivo, mml_jTxtCpf,mml_jTxtCodigo,mml_jTxtCredencial);
     }//GEN-LAST:event_mml_jBtnCancelarActionPerformed
 
     private void mml_jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jBtnPesquisarActionPerformed
-       Mml_jDlgVendedorPesquisar dlgVendedorPesquisar = new Mml_jDlgVendedorPesquisar(null,true);
-        dlgVendedorPesquisar.setTelaPai(this);
-        dlgVendedorPesquisar.setVisible(true);
-       
+      JDlgSad_ProdutosPesquisar jDlgSad_ProdutosPesquisar = new JDlgSad_ProdutosPesquisar(null, true);
+        jDlgSad_ProdutosPesquisar.setTelaPai(this);
+        jDlgSad_ProdutosPesquisar.setVisible(true);
+        if (jDlgSad_ProdutosPesquisar.ativarBotoes()) {
+            Sad_Util.sad_habilitar(true, jBtnSad_Alterar, jBtnSad_Excluir, jBtnSad_Cancelar);
+            Util.sad_habilitar(false, jBtnSad_Incluir, jBtnSad_Pesquisar);
+        };
 
     }//GEN-LAST:event_mml_jBtnPesquisarActionPerformed
 
     private void mml_jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jBtnAlterarActionPerformed
         // TODO add your handling code here:
-     
+     incluir = false;
+        Util.habilitar(true,mml_jTxtNome, mml_jTxtExpediente,mml_jTxtDataNasc,mml_jCBocAtivo, mml_jTxtCpf,mml_jTxtCodigo,mml_jTxtCredencial, mml_jBtnConfirmar, mml_jBtnCancelar);
+        Util.habilitar(false, mml_jBtnExcluir, mml_jBtnIncluir, mml_jBtnAlterar);
+        mml_jTxtNome.grabFocus();
         
     }//GEN-LAST:event_mml_jBtnAlterarActionPerformed
 
