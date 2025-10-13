@@ -24,7 +24,7 @@ public class MmljDlgCarros extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Cadastro de Carros");
-        habilitar(false);
+       Util.habilitar(false,mml_JTxtPrecoVenda, mml_jTxtModelo,  mml_jTxtCor, mml_jTxtAno, mml_jTxtPreco, mml_jTxtMarca, mml_jTxtCodigo,mml_jBtnConfirmar, mml_jBtnCancelar,mml_jBtnPesquisar, mml_jBtnExcluir,mml_jBtnAlterar);
         
     }
       public MmlCarros viewBean() {
@@ -33,7 +33,7 @@ public class MmljDlgCarros extends javax.swing.JDialog {
         mmlCarros.setMmlIdCarros(codigo);
         mmlCarros.setMmlPrecoVenda(Util.strToDouble(mml_JTxtPrecoVenda.getText()));
         mmlCarros.setMmlModelo(mml_jTxtModelo.getText());
-        mmlCarros.setMmlMarca(mml_jTxtModelo.getText());
+        mmlCarros.setMmlMarca(mml_jTxtMarca.getText());
         mmlCarros.setMmlCor(mml_jTxtCor.getText());
         mmlCarros.setMmlAno(Util.strToDate(mml_jTxtAno.getText()));
         mmlCarros.setMmlPreco(Util.strToDouble(mml_jTxtPreco.getText()));
@@ -51,25 +51,9 @@ public class MmljDlgCarros extends javax.swing.JDialog {
     }
     
       
-    public void habilitar (boolean value){
-      mml_jTxtCodigo.setEnabled(value);
-      mml_JTxtPrecoVenda.setEnabled(value);
-      mml_jTxtModelo.setEnabled(value);
-      mml_jTxtMarca.setEnabled(value);
-      mml_jTxtCor.setEnabled(value);
-      mml_jTxtAno.setEnabled(value);
-      mml_jTxtPreco.setEnabled(value);
-    
+
       
-      
-      mml_jBtnIncluir.setEnabled(!value);
-      mml_jBtnAlterar.setEnabled(!value);
-      mml_jBtnExcluir.setEnabled(!value);
-      mml_jBtnConfirmar.setEnabled(value);
-      mml_jBtnCancelar.setEnabled(value);
-      mml_jBtnPesquisar.setEnabled(!value);
-      
-}
+
     public void limpar(){
     mml_jTxtCodigo.setText("");
     mml_jTxtModelo.setText("");
@@ -313,10 +297,10 @@ public class MmljDlgCarros extends javax.swing.JDialog {
 
     private void mml_jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jBtnIncluirActionPerformed
         incluir = true;
-        Util.habilitar(true, mml_JLblPrecoVenda, mml_jLblModelo, mml_JLblCodigo, mml_jLblMarca, mml_jLblCor, mml_jLblAno, mml_jLblPreco, mml_jBtnConfirmar, mml_jBtnCancelar);
+        Util.habilitar(true, mml_JTxtPrecoVenda, mml_jTxtModelo, mml_jTxtCor, mml_jTxtAno, mml_jTxtPreco, mml_jTxtCodigo, mml_jTxtMarca, mml_jBtnConfirmar, mml_jBtnCancelar);
         Util.habilitar(false, mml_jBtnIncluir, mml_jBtnPesquisar);
         Util.limpar(mml_JLblPrecoVenda, mml_jLblModelo, mml_JLblCodigo, mml_jLblMarca, mml_jLblCor, mml_jLblAno, mml_jLblPreco);
-        mml_JLblCodigo.grabFocus();
+        mml_JTxtPrecoVenda.grabFocus();
     }//GEN-LAST:event_mml_jBtnIncluirActionPerformed
 
     private void mml_jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jBtnConfirmarActionPerformed
@@ -327,8 +311,8 @@ public class MmljDlgCarros extends javax.swing.JDialog {
         } else {
             mmlCarrosDao.update(viewBean());
         }
-        Util.habilitar(false, mml_JLblPrecoVenda, mml_jLblModelo, mml_JLblCodigo, mml_jLblMarca, mml_jLblCor, mml_jLblAno, mml_jLblPreco, mml_jBtnConfirmar, mml_jBtnCancelar);
-        Util.habilitar(true, mml_jBtnIncluir, mml_jBtnPesquisar);
+        Util.habilitar(true, mml_JLblPrecoVenda, mml_jLblModelo, mml_JLblCodigo, mml_jLblMarca, mml_jLblCor, mml_jLblAno, mml_jLblPreco, mml_jBtnConfirmar, mml_jBtnCancelar);
+        Util.habilitar(false, mml_jBtnIncluir, mml_jBtnPesquisar);
         Util.limpar(mml_JLblPrecoVenda, mml_jLblModelo, mml_JLblCodigo, mml_jLblMarca, mml_jLblCor, mml_jLblAno, mml_jLblPreco);
     }//GEN-LAST:event_mml_jBtnConfirmarActionPerformed
 

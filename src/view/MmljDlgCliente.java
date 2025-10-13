@@ -24,6 +24,7 @@ public class MmljDlgCliente extends javax.swing.JDialog {
         initComponents();
         setTitle("Cadastro de Clientes");
         setLocationRelativeTo(null);
+        Util.habilitar(false,JTxtNome,jTxtCidade,jTxtcep,jTxtBairro ,JTxtRg,  jTxtSexo, jCBoxAtivo, jTxtCpf, jTxtDataCad,jTxtCodigo, jTxtTelefone,jTxtCelular, jTxtDataNasc,jTxtEnderoco,jTxtGmail,jbtnPesquisar,jBtnCancelar, jBtnExcluir,jBtnAlterar);
     }
           
     
@@ -442,7 +443,7 @@ public class MmljDlgCliente extends javax.swing.JDialog {
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         // TODO add your handling code here:
         incluir = true;
-        Util.habilitar(true, jTxtCodigo,JTxtNome,jTxtCpf, JTxtRg,jTxtSexo,jTxtDataNasc, jTxtGmail, jTxtcep, jTxtEnderoco, jTxtBairro, jTxtCidade, jTxtTelefone,  jTxtCelular, jTxtDataCad, jBtnConfirmar, jBtnCancelar);
+        Util.habilitar(true, jTxtCodigo,jCBoxAtivo,JTxtNome,jTxtCpf, JTxtRg,jTxtSexo,jTxtDataNasc, jTxtGmail, jTxtcep, jTxtEnderoco, jTxtBairro, jTxtCidade, jTxtTelefone,  jTxtCelular, jTxtDataCad, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(false, jBtnIncluir, jbtnPesquisar);
         Util.limpar(jTxtCodigo,JTxtNome,jTxtCpf, JTxtRg,jTxtSexo,jTxtDataNasc, jTxtGmail, jTxtcep, jTxtEnderoco, jTxtBairro, jTxtCidade, jTxtTelefone,  jTxtCelular, jTxtDataCad
 );

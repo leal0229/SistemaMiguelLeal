@@ -28,8 +28,11 @@ public class MmljDlgUsuario extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Cadastro de usuarios");
-              
+         Util.habilitar(false,mmljTxtNome,mmljTxtCodigo,mmljFmtDataNascimento,mmljPwdSenha ,mmljCboNivel,  mmljChbAtivo, mmljTxtApelido, mmljFmtCpf,mmljBtnPesquisar,mmljBtnCancelar, mmljBtnExcluir,mmljBtnAlterar);
     }
+
+    
+      
    public MmlUsuarios viewBean() {
     MmlUsuarios mmlUsuarios = new MmlUsuarios();
     int codigo = Util.strToInt(mmljTxtCodigo.getText());
