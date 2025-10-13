@@ -26,52 +26,42 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="mml_jTxtTipo" alignment="0" pref="185" max="32767" attributes="0"/>
+                      <Component id="mml_jTxtIdVendasCarros" alignment="0" max="32767" attributes="0"/>
+                      <Component id="mml_jLblIdVendasCarros" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="mml_jLblTipo" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="mml_jTxtTipo" alignment="0" pref="185" max="32767" attributes="0"/>
-                              <Component id="mml_jTxtIdVendasCarros" alignment="0" max="32767" attributes="0"/>
-                              <Component id="mml_jLblIdVendasCarros" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="mml_jLblTipo" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="mml_jTxtIdVendas" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="mml_jLblIdVenda" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="mml_jTxtIdVendas" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="mml_jLblIdVenda" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="mml_jLblIdCarros" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
-                                  <Component id="mml_jTxtIdCarros" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="mml_jLblValorUnitario" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
-                                  <Component id="mml_jTxtValorUnitario" alignment="0" min="-2" pref="185" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="mml_jLblIdCarros" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+                          <Component id="mml_jTxtIdCarros" alignment="0" pref="340" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="mml_jBtnIncluir" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="mml_jBtnAlterar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="mml_jBtnExcluir" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="mml_jBtnConfirmar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="mml_jBtnCancelar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="mml_jBtnPesquisar" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="mml_jLblValorUnitario" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
+                          <Component id="mml_jTxtValorUnitario" alignment="0" min="-2" pref="185" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="237" max="-2" attributes="0"/>
+              <Component id="jBtnOK" min="-2" pref="90" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jBtnCancelar" min="-2" pref="104" max="-2" attributes="0"/>
+              <EmptySpace pref="255" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -109,16 +99,12 @@
                       <Component id="mml_jTxtValorUnitario" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="mml_jBtnIncluir" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="mml_jBtnAlterar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="mml_jBtnExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="mml_jBtnConfirmar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="mml_jBtnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="mml_jBtnPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="54" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="jBtnCancelar" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jBtnOK" alignment="0" min="-2" pref="45" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -127,28 +113,6 @@
     <Component class="javax.swing.JTextField" name="mml_jTxtIdCarros">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mml_jTxtIdCarrosActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="mml_jBtnCancelar">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/img/cancelar.png"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Cancelar"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mml_jBtnCancelarActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="mml_jBtnAlterar">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/img/alterar.png"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Alterar"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mml_jBtnAlterarActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="mml_jLblValorUnitario">
@@ -186,28 +150,6 @@
         <Property name="text" type="java.lang.String" value="Tipo"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="mml_jBtnPesquisar">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/img/pesquisar (2)_1.png"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Pesquisar"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mml_jBtnPesquisarActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="mml_jBtnExcluir">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/img/excluir.png"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Excluir"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mml_jBtnExcluirActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JLabel" name="mml_jLblIdCarros">
       <Properties>
         <Property name="text" type="java.lang.String" value="Id Carros"/>
@@ -218,26 +160,20 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mml_jTxtTipoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="mml_jBtnIncluir">
+    <Component class="javax.swing.JToggleButton" name="jBtnOK">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/img/incluir.png"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Incluir"/>
+        <Property name="text" type="java.lang.String" value="OK"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mml_jBtnIncluirActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnOKActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="mml_jBtnConfirmar">
+    <Component class="javax.swing.JToggleButton" name="jBtnCancelar">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/img/confirmar.png"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Confirmar"/>
+        <Property name="text" type="java.lang.String" value="Cancelar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mml_jBtnConfirmarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnCancelarActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

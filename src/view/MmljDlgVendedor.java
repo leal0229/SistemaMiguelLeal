@@ -372,13 +372,10 @@ public void beanView(MmlVendedor mmlVendedor) {
     }//GEN-LAST:event_mml_jBtnCancelarActionPerformed
 
     private void mml_jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jBtnPesquisarActionPerformed
-      JDlgSad_ProdutosPesquisar jDlgSad_ProdutosPesquisar = new JDlgSad_ProdutosPesquisar(null, true);
-        jDlgSad_ProdutosPesquisar.setTelaPai(this);
-        jDlgSad_ProdutosPesquisar.setVisible(true);
-        if (jDlgSad_ProdutosPesquisar.ativarBotoes()) {
-            Sad_Util.sad_habilitar(true, jBtnSad_Alterar, jBtnSad_Excluir, jBtnSad_Cancelar);
-            Util.sad_habilitar(false, jBtnSad_Incluir, jBtnSad_Pesquisar);
-        };
+      Mml_jDlgVendedorPesquisar mml_jDlgVendedorPesquisar = new Mml_jDlgVendedorPesquisar(null, true);
+        mml_jDlgVendedorPesquisar.setTelaPai(this);
+        mml_jDlgVendedorPesquisar.setVisible(true);
+       
 
     }//GEN-LAST:event_mml_jBtnPesquisarActionPerformed
 
