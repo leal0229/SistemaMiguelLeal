@@ -10,25 +10,25 @@ package view;
  *
  * @author Marlom
  */
-import bean.MmlCliente;
+import bean.MmlVendedor;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
-public class Mml_Controller_Cliente   extends AbstractTableModel{
+public class Mml_Controller_Vendedor   extends AbstractTableModel{
     
-    private List lstCliente;
+    private List lstVendedor;
 
     public void setList(List lstcarros) {
-        this.lstCliente = lstCliente;
+        this.lstVendedor = lstcarros;
     }
 
-    public MmlCliente getBean(int rowIndex) {
-        return (MmlCliente) lstCliente.get(rowIndex);
+    public MmlVendedor getBean(int rowIndex) {
+        return (MmlVendedor) lstVendedor.get(rowIndex);
     }
 
     @Override
     public int getRowCount() {
-        return lstCliente.size();
+        return lstVendedor.size();
 
     }
 
@@ -39,15 +39,15 @@ public class Mml_Controller_Cliente   extends AbstractTableModel{
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        MmlCliente mmlCliente = (MmlCliente) lstCliente.get( rowIndex);
+        MmlVendedor mmlVendedor = (MmlVendedor) lstVendedor.get( rowIndex);
         if ( columnIndex == 0 ){
-            return mmlCliente.getMmlIdCliente();
+            return mmlVendedor.getMmlIdVendedor();
         } else if (columnIndex ==1) {
-            return mmlCliente.getMmlNome();
+            return mmlVendedor.getMmlNome();
         } else if (columnIndex ==2) {
-            return mmlCliente.getMmlRg();
+            return mmlVendedor.getMmlCredencial();
         } else if (columnIndex ==3) {
-            return mmlCliente.getMmlCpf();
+            return mmlVendedor.getMmlExpediente();
         }
         return "";
     }
@@ -55,13 +55,13 @@ public class Mml_Controller_Cliente   extends AbstractTableModel{
     @Override
     public String getColumnName(int columnIndex) {
         if ( columnIndex == 0) {
-            return "";
+            return "getMmlIdVendedor";
         } else if ( columnIndex == 1) {
-            return "";
+            return "getMmlModelo";
         } else if ( columnIndex == 2) {
-            return "";
+            return "getMmlPreco";
         } else if ( columnIndex == 3) {
-            return "";
+            return "getMmlAno";
         } 
         return "";
     }

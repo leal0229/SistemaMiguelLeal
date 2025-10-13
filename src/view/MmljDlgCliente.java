@@ -4,32 +4,81 @@
  */
 package view;
 
-import java.awt.Color;
-import javax.swing.JOptionPane;
+import bean.MmlCliente;
+import dao.MmlClienteDao;
+import tools.Util;
 
 
 /**
  *
  * @author Marlon
  */
-public class MmljDlgCliente extends javax.swing.JDialog {
-
+public class MmljDlgCliente extends javax.swing.JDialog { 
+    
+   private boolean incluir;
     /**
      * Creates new form jDlgCliente
      */
     public MmljDlgCliente(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+ super(parent, modal);
         initComponents();
-        setLocationRelativeTo(null);
         setTitle("Cadastro de Clientes");
-        getContentPane().setBackground(Color.WHITE);
-      
+        setLocationRelativeTo(null);
+    }
+          
+    
+     
+      public MmlCliente viewBean() {
+        MmlCliente mmlCliente = new MmlCliente();
+        int codigo = Util.strToInt(jTxtCodigo.getText());
+        mmlCliente.setMmlIdCliente(codigo);
+        mmlCliente.setMmlNome(JTxtNome.getText());
+        mmlCliente.setMmlRg(JTxtRg.getText());
+        mmlCliente.setMmlSexo(jTxtSexo.getText());
+        if (jCBoxAtivo.isSelected() == true) {
+                    mmlCliente.setMmlAtivo("S");
+                } else {
+                    mmlCliente.setMmlAtivo("N");
+                }
+        mmlCliente.setMmlCpf(jTxtCpf.getText());
+        mmlCliente.setMmlDataCadastro(Util.strToDate(jTxtDataCad.getText()));
+        mmlCliente.setMmlTelefone(jTxtTelefone.getText());
+        mmlCliente.setMmlCelular(jTxtCelular.getText());
+        mmlCliente.setMmlDatanascimento(Util.strToDate(jTxtDataNasc.getText()));
+        mmlCliente.setMmlEnderoco(jTxtEnderoco.getText());
+        mmlCliente.setMmlEmail(jTxtGmail.getText());
+        mmlCliente.setMmlCidade(jTxtCidade.getText());
+        mmlCliente.setMmlCep(jTxtcep.getText());
+        mmlCliente.setMmlBairro(jTxtBairro.getText());
+        return mmlCliente;
     }
 
-   
-   
+    public void beanView(MmlCliente mmlCliente) {
+        jTxtCodigo.setText(Util.intToStr(mmlCliente.getMmlIdCliente()));
+        JTxtNome.setText(mmlCliente.getMmlNome());
+        jTxtCpf.setText(mmlCliente.getMmlCpf());
+        JTxtRg.setText(mmlCliente.getMmlRg());
+        jTxtSexo.setText(mmlCliente.getMmlSexo());
+        jTxtDataNasc.setText(Util.dateToStr(mmlCliente.getMmlDatanascimento()));
+        jTxtGmail.setText(mmlCliente.getMmlEmail());
+        jTxtcep.setText(mmlCliente.getMmlCep());
+        jTxtEnderoco.setText(mmlCliente.getMmlEnderoco());
+        jTxtBairro.setText(mmlCliente.getMmlBairro());
+        jTxtCidade.setText(mmlCliente.getMmlCidade());
+        jTxtTelefone.setText(mmlCliente.getMmlTelefone());
+        jTxtCelular.setText(mmlCliente.getMmlCelular());
+        jTxtDataCad.setText(Util.dateToStr(mmlCliente.getMmlDataCadastro()));
+       if (mmlCliente.getMmlDataCadastro().equals("S") == true) {
+                jCBoxAtivo.setSelected(true);
+            } else {
+                jCBoxAtivo.setSelected(false);
+            }
 
 
+    }
+   
+   
+ 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -392,7 +441,12 @@ public class MmljDlgCliente extends javax.swing.JDialog {
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         // TODO add your handling code here:
-       
+        incluir = true;
+        Util.habilitar(true, jTxtCodigo,JTxtNome,jTxtCpf, JTxtRg,jTxtSexo,jTxtDataNasc, jTxtGmail, jTxtcep, jTxtEnderoco, jTxtBairro, jTxtCidade, jTxtTelefone,  jTxtCelular, jTxtDataCad, jBtnConfirmar, jBtnCancelar);
+        Util.habilitar(false, jBtnIncluir, jbtnPesquisar);
+        Util.limpar(jTxtCodigo,JTxtNome,jTxtCpf, JTxtRg,jTxtSexo,jTxtDataNasc, jTxtGmail, jTxtcep, jTxtEnderoco, jTxtBairro, jTxtCidade, jTxtTelefone,  jTxtCelular, jTxtDataCad
+);
+        jTxtCodigo.grabFocus();
         
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
@@ -422,26 +476,29 @@ public class MmljDlgCliente extends javax.swing.JDialog {
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         // TODO add your handling code here:
-        
-        
-        JOptionPane.showConfirmDialog(null, "Você deseja cancelar?");
+        Util.habilitar(false, jTxtCodigo,JTxtNome,jTxtCpf, JTxtRg,jTxtSexo,jTxtDataNasc, jTxtGmail, jTxtcep, jTxtEnderoco, jTxtBairro, jTxtCidade, jTxtTelefone,  jTxtCelular, jTxtDataCad);
+        Util.habilitar(true, jBtnIncluir, jbtnPesquisar);
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
-        int resp = JOptionPane.showConfirmDialog(null, "Confirma Exclusão ?");
-        if (resp == JOptionPane.YES_NO_OPTION) {
-      
-        
-        
-    }
+         if (Util.perguntar("Excluir?") == true) {
+            MmlClienteDao mmlClienteDao = new MmlClienteDao();
+            mmlClienteDao.delete(viewBean());
+            Util.habilitar(false, jBtnAlterar, jBtnCancelar, jBtnExcluir);
+            Util.habilitar(true, jBtnIncluir, jbtnPesquisar);
+            Util.limpar(jTxtCodigo,JTxtNome,jTxtCpf, JTxtRg,jTxtSexo,jTxtDataNasc, jTxtGmail, jTxtcep, jTxtEnderoco, jTxtBairro, jTxtCidade, jTxtTelefone,  jTxtCelular, jTxtDataCad
+);}
     
         
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
-       
+        incluir = false;
+        Util.habilitar(true, jTxtCodigo,JTxtNome,jTxtCpf, JTxtRg,jTxtSexo,jTxtDataNasc, jTxtGmail, jTxtcep, jTxtEnderoco, jTxtBairro, jTxtCidade, jTxtTelefone,  jTxtCelular, jTxtDataCad, jBtnConfirmar, jBtnCancelar, jBtnConfirmar, jBtnCancelar);
+        Util.habilitar(false, jBtnExcluir, jBtnIncluir, jBtnAlterar);
+        JTxtNome.grabFocus();
         
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
