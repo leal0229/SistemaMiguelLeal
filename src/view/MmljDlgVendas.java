@@ -10,6 +10,7 @@ import bean.MmlVendas;
 import bean.MmlVendedor;
 import dao.MmlClienteDao;
 import dao.MmlUsuariosDao;
+import dao.MmlVendasDao;
 import dao.MmlVendedorDao;
 import java.awt.Color;
 import java.util.List;
@@ -23,6 +24,7 @@ import tools.Util;
  */
 public class MmljDlgVendas extends javax.swing.JDialog {
 
+     private boolean incluir;
     /**
      * Creates new form MmljDlgVendas
      */
@@ -352,8 +354,8 @@ public class MmljDlgVendas extends javax.swing.JDialog {
     private void mml_jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jBtnExcluirActionPerformed
         // TODO add your handling code here:
         if(Util.perguntar("Deseja excluir o registro?") == true) {
-            MmlUsuariosDao usuariosDAO = new MmlUsuariosDao();
-            usuariosDAO.delete(viewBean());
+            MmlVendasDao mmlVendasDao = new MmlVendasDao();
+            mmlVendasDao.delete(viewBean());
             Util.limpar(mml_jTxtIdVendas, mml_jTxtValor, mml_jTxtFormasdePagamento, mml_jTxtData, mml_jcboClientes, mml_jcboVendedor);
         }
     }//GEN-LAST:event_mml_jBtnExcluirActionPerformed
@@ -364,10 +366,16 @@ public class MmljDlgVendas extends javax.swing.JDialog {
 
     private void mml_jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jBtnConfirmarActionPerformed
         // TODO add your handling code here:
-        
-       
-    
-        habilitar(false);
+       MmlVendasDao mmlVendasDao = new MmlVendasDao();
+        if (incluir) {
+            mmlVendasDao.insert(viewBean());
+        } else {
+            mmlVendasDao.update(viewBean());
+        }
+        Util.habilitar(false,mml_jTxtIdVendas, mml_jTxtValor, mml_jTxtFormasdePagamento, mml_jTxtData, mml_jcboClientes, mml_jcboVendedor,  mml_jBtnIncluir, mml_jBtnCancelar, mml_jBtnConfirmar, mml_jBtnCancelar,  mml_jBtnConfirmar, mml_jBtnCancelar);
+        Util.habilitar(true, mml_jBtnIncluir, mml_jBtnPesquisar);
+        Util.limpar(mml_jTxtIdVendas, mml_jTxtValor, mml_jTxtFormasdePagamento, mml_jTxtData, mml_jcboClientes, mml_jcboVendedor,  mml_jBtnConfirmar, mml_jBtnCancelar);
+        // TODO add your handling code here:
 
     }//GEN-LAST:event_mml_jBtnConfirmarActionPerformed
 

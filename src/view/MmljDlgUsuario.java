@@ -6,6 +6,7 @@ package view;
 
 
 import bean.MmlUsuarios;
+import dao.MmlUsuariosDao;
 import javax.swing.JOptionPane;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
@@ -16,8 +17,9 @@ import tools.Util;
  *
  * @author Marlon
  */
-public class MmljDlgUsuario extends javax.swing.JDialog {
-
+public class MmljDlgUsuario extends javax.swing.JDialog { 
+    
+  private boolean incluir;
     /**
      * Creates new form jDlgUsuario
      */
@@ -198,7 +200,7 @@ public void beanView(MmlUsuarios mmlUsuarios) {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(mmljBtnCancelar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(mmljBtnPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))
+                                .addComponent(mmljBtnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -274,10 +276,10 @@ public void beanView(MmlUsuarios mmlUsuarios) {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mmljBtnIncluir)
                     .addComponent(mmljBtnAlterar)
-                    .addComponent(mmljBtnExcluir)
                     .addComponent(mmljBtnConfirmar)
                     .addComponent(mmljBtnCancelar)
-                    .addComponent(mmljBtnPesquisar))
+                    .addComponent(mmljBtnPesquisar)
+                    .addComponent(mmljBtnExcluir))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
@@ -302,31 +304,49 @@ public void beanView(MmlUsuarios mmlUsuarios) {
 
     private void mmljBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mmljBtnExcluirActionPerformed
         // TODO add your handling code here:
-        int resp = JOptionPane.showConfirmDialog(null, "Confirma Exclusão ?");
-        if (resp == JOptionPane.YES_NO_OPTION){
-           
-            
-        
+        if (Util.perguntar("Excluir?") == true) {
+            MmlUsuariosDao mmlUsuariosDao = new MmlUsuariosDao();
+            mmlUsuariosDao.delete(viewBean());
+            Util.habilitar(false, mmljBtnAlterar, mmljBtnCancelar, mmljBtnExcluir);
+            Util.habilitar(true, mmljBtnIncluir, mmljBtnPesquisar);
+            Util.limpar(mmljTxtNome,mmljTxtApelido,mmljFmtCpf, mmljPwdSenha,mmljCboNivel,mmljChbAtivo, mmljFmtDataNascimento, mmljTxtCodigo);
         }
+        
+        
     }//GEN-LAST:event_mmljBtnExcluirActionPerformed
 
     private void mmljBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mmljBtnIncluirActionPerformed
         // TODO add your handling code here:
-        
+        Util.habilitar(true, mmljTxtNome,mmljTxtApelido,mmljFmtCpf, mmljPwdSenha,mmljCboNivel,mmljChbAtivo, mmljFmtDataNascimento, mmljTxtCodigo,  mmljBtnConfirmar, mmljBtnCancelar);
+        Util.habilitar(false, mmljBtnIncluir, mmljBtnPesquisar);
+        Util.limpar( mmljTxtNome,mmljTxtApelido,mmljFmtCpf, mmljPwdSenha,mmljCboNivel,mmljChbAtivo, mmljFmtDataNascimento, mmljTxtCodigo);
+        mmljTxtNome.grabFocus();
         
     }//GEN-LAST:event_mmljBtnIncluirActionPerformed
 
     private void mmljBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mmljBtnConfirmarActionPerformed
         // TODO add your handling code here:
-         
+        MmlUsuariosDao mmlUsuariosDao = new MmlUsuariosDao();
+        if (incluir) {
+            mmlUsuariosDao.insert(viewBean());
+        } else {
+            mmlUsuariosDao.update(viewBean());
+        }
+        Util.habilitar(false,mmljTxtNome,mmljTxtApelido,mmljFmtCpf, mmljPwdSenha,mmljCboNivel,mmljChbAtivo, mmljFmtDataNascimento, mmljTxtCodigo,  mmljBtnConfirmar, mmljBtnCancelar, mmljBtnConfirmar, mmljBtnCancelar,  mmljBtnConfirmar, mmljBtnCancelar);
+        Util.habilitar(true, mmljBtnIncluir, mmljBtnPesquisar);
+        Util.limpar(mmljTxtNome,mmljTxtApelido,mmljFmtCpf, mmljPwdSenha,mmljCboNivel,mmljChbAtivo, mmljFmtDataNascimento, mmljTxtCodigo,  mmljBtnConfirmar, mmljBtnCancelar);
+        // TODO add your handling code here:
+        
         
         
     }//GEN-LAST:event_mmljBtnConfirmarActionPerformed
 
     private void mmljBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mmljBtnCancelarActionPerformed
         // TODO add your handling code here:
-   
-        JOptionPane.showConfirmDialog(null, "Você deseja cancelar?");
+        Util.habilitar(false,mmljTxtNome,mmljTxtApelido,mmljFmtCpf, mmljPwdSenha,mmljCboNivel,mmljChbAtivo, mmljFmtDataNascimento, mmljTxtCodigo,  mmljBtnConfirmar, mmljBtnCancelar, mmljBtnConfirmar, mmljBtnCancelar,  mmljBtnConfirmar, mmljBtnCancelar);
+        Util.habilitar(true, mmljBtnIncluir, mmljBtnPesquisar);
+        Util.limpar(mmljTxtNome,mmljTxtApelido,mmljFmtCpf, mmljPwdSenha,mmljCboNivel,mmljChbAtivo, mmljFmtDataNascimento, mmljTxtCodigo,  mmljBtnConfirmar, mmljBtnCancelar);
+      
     }//GEN-LAST:event_mmljBtnCancelarActionPerformed
 
     private void mmljBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mmljBtnPesquisarActionPerformed
@@ -341,8 +361,11 @@ public void beanView(MmlUsuarios mmlUsuarios) {
 
     private void mmljBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mmljBtnAlterarActionPerformed
         // TODO add your handling code here:
+        incluir = false;
+        Util.habilitar(true, mmljTxtNome,mmljTxtApelido,mmljFmtCpf, mmljPwdSenha,mmljCboNivel,mmljChbAtivo, mmljFmtDataNascimento, mmljTxtCodigo,  mmljBtnConfirmar, mmljBtnCancelar);
+        Util.habilitar(false, mmljBtnExcluir, mmljBtnIncluir, mmljBtnAlterar);
+        mmljTxtNome.grabFocus();
         
-        ;
         
     }//GEN-LAST:event_mmljBtnAlterarActionPerformed
 
