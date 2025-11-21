@@ -214,7 +214,22 @@ public class MmlCliente  implements java.io.Serializable {
         this.mmlBairro = mmlBairro;
     }
 
-
+ @Override
+    public String toString(){
+        return this.mmlNome;
+    }
+    
+     @Override
+        public boolean equals(Object object){
+        if (object instanceof MmlCliente){
+            MmlCliente clientes = (MmlCliente)object;
+            if (this.getMmlIdCliente()== clientes.getMmlIdCliente()){
+                return true;
+            }
+        }
+         return false;
+    }
 }
+
 
 

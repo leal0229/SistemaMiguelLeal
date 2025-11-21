@@ -2,63 +2,92 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package view;
+package MmlView;
 
-
-import bean.MmlVendedor;
-import dao.MmlClienteDao;
+import MmlBean.MmlUsuarios;
+import MmlBean.MmlVendedor;
+import MmlDao.MmlVendedorDao;
 import java.awt.Color;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import tools.Util;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
 
 /**
  *
- * @author Marlon
+ * @author clari
  */
 public class MmljDlgVendedor extends javax.swing.JDialog {
+    boolean incluir = false;
+    private MaskFormatter mascaraCpf, mascaraDataNasc;
 
-     private boolean incluir;
     /**
      * Creates new form jDlgVendedor
      */
     public MmljDlgVendedor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-       
+               initComponents();
+
         setLocationRelativeTo(null);
         setTitle("Cadastro de Vendedor");
         getContentPane().setBackground(Color.WHITE);
-        
+        habilitar(false);
+        try {
+            mascaraCpf = new MaskFormatter("###.###.###-##");
+            mascaraDataNasc = new MaskFormatter("##/##/####");
+            mml_jFmtCpf.setFormatterFactory(new DefaultFormatterFactory(mascaraCpf));
+            mml_jFmtDataNasc.setFormatterFactory(new DefaultFormatterFactory(mascaraDataNasc));
+
+        } catch (ParseException ex) {
+            Logger.getLogger(MmljDlgCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    public MmlVendedor viewBean() {
-    MmlVendedor mmlVendedor = new MmlVendedor();
-    int codigo = Util.strToInt(mml_jTxtCodigo.getText());
-    mmlVendedor.setMmlIdVendedor(codigo);
-    mmlVendedor.setMmlNome(mml_jTxtNome.getText());
-    mmlVendedor.setMmlCredencial(Util.strToInt(mml_jTxtCredencial.getText()));
-    mmlVendedor.setMmlExpediente(mml_jTxtExpediente.getText());
-    mmlVendedor.setMmlCpf(mml_jTxtCpf.getText());
-    mmlVendedor.setMmlAtivo(mml_jCBocAtivo.isSelected() ? "S" : "N");
-    mmlVendedor.setMmlDataNascimente(Util.strToDate(mml_jTxtDataNasc.getText()));
-    return mmlVendedor;
-}
 
-public void beanView(MmlVendedor mmlVendedor) {
-    mml_jTxtCodigo.setText(Util.intToStr(mmlVendedor.getMmlIdVendedor()));
-    mml_jTxtNome.setText(mmlVendedor.getMmlNome());
-    mml_jTxtCredencial.setText(Util.intToStr(mmlVendedor.getMmlCredencial()));
-    mml_jTxtExpediente.setText(mmlVendedor.getMmlExpediente());
-    mml_jTxtCpf.setText(mmlVendedor.getMmlCpf());
-    mml_jCBocAtivo.setSelected("S".equals(mmlVendedor.getMmlAtivo()));
-    mml_jTxtDataNasc.setText(Util.dateToStr(mmlVendedor.getMmlDataNascimente()));
-}
+    public void habilitar(boolean value) {
+        mml_jTxtCodigoo.setEnabled(value);
+        mml_jTxtNome.setEnabled(value);
+        mml_jFmtCpf.setEnabled(value);
+        mml_jTxtCredencial.setEnabled(value);
+        mml_jFmtDataNasc.setEnabled(value);
+        mml_jTxtExpediente.setEnabled(value);
+        mml_jCBocAtivo.setEnabled(value);
 
+        mml_jBtnIncluir.setEnabled(!value);
+        mml_jBtnAlterar.setEnabled(!value);
+        mml_jBtnExcluir.setEnabled(!value);
+        mml_jBtnConfirmar.setEnabled(value);
+        mml_jBtnCancelar.setEnabled(value);
+        mml_jBtnPesquisar.setEnabled(!value);
 
-    
+    }
 
-   
+    public void limpar() {
+        mml_jTxtCodigoo.setText("");
+        mml_jTxtNome.setText("");
+        mml_jTxtCredencial.setText("");
+        mml_jTxtExpediente.setText("");
+        mml_jFmtDataNasc.setText("");
+        mml_jFmtCpf.setText("");
+        mml_jCBocAtivo.setSelected(false);
+    }
 
-    
+    public void beanView(MmlVendedor vendedor) {
+      
+            vendedor.setNome(mml_jTxtNome.getText());
+            vendedor.setCredencial(mml_jTxtCredencial.getText());
+            vendedor.setExpediente(mml_jTxtExpediente.getText());
+            vendedor.setCpf(mml_jFmtCpf.getText());
+            vendedor.setDatanascimento(null);
+            if (mml_jCBocAtivo.isSelected() == true) {
+                vendedor.setAtivo("S");
+            } else {
+                vendedor.setAtivo("N");
+            }
+    }
         /**
          * This method is called from within the constructor to initialize the
          * form. WARNING: Do NOT modify this code. The content of this method is
@@ -71,15 +100,13 @@ public void beanView(MmlVendedor mmlVendedor) {
         mml_jLblNome = new javax.swing.JLabel();
         mml_jTxtNome = new javax.swing.JTextField();
         mml_jLblCodigo = new javax.swing.JLabel();
-        mml_jTxtCodigo = new javax.swing.JTextField();
+        mml_jTxtCodigoo = new javax.swing.JTextField();
         mml_jLblCredencial = new javax.swing.JLabel();
         mml_jTxtCredencial = new javax.swing.JTextField();
         mml_jLblExpediente = new javax.swing.JLabel();
         mml_jTxtExpediente = new javax.swing.JTextField();
         mml_jLblCpf = new javax.swing.JLabel();
-        mml_jTxtCpf = new javax.swing.JTextField();
         mml_jLblDataNasc = new javax.swing.JLabel();
-        mml_jTxtDataNasc = new javax.swing.JTextField();
         mml_jLblAtivo = new javax.swing.JLabel();
         mml_jCBocAtivo = new javax.swing.JCheckBox();
         mml_jBtnPesquisar = new javax.swing.JButton();
@@ -88,6 +115,8 @@ public void beanView(MmlVendedor mmlVendedor) {
         mml_jBtnExcluir = new javax.swing.JButton();
         mml_jBtnConfirmar = new javax.swing.JButton();
         mml_jBtnCancelar = new javax.swing.JButton();
+        mml_jFmtCpf = new javax.swing.JFormattedTextField();
+        mml_jFmtDataNasc = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -101,9 +130,9 @@ public void beanView(MmlVendedor mmlVendedor) {
 
         mml_jLblCodigo.setText("Código");
 
-        mml_jTxtCodigo.addActionListener(new java.awt.event.ActionListener() {
+        mml_jTxtCodigoo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mml_jTxtCodigoActionPerformed(evt);
+                mml_jTxtCodigooActionPerformed(evt);
             }
         });
 
@@ -125,19 +154,7 @@ public void beanView(MmlVendedor mmlVendedor) {
 
         mml_jLblCpf.setText("CPF");
 
-        mml_jTxtCpf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mml_jTxtCpfActionPerformed(evt);
-            }
-        });
-
         mml_jLblDataNasc.setText("Data de Nascimento");
-
-        mml_jTxtDataNasc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mml_jTxtDataNascActionPerformed(evt);
-            }
-        });
 
         mml_jLblAtivo.setText("Ativo");
 
@@ -211,18 +228,19 @@ public void beanView(MmlVendedor mmlVendedor) {
                             .addComponent(mml_jLblExpediente))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(mml_jTxtCpf)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(mml_jLblCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(mml_jTxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(mml_jTxtCodigoo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(mml_jLblCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(26, 26, 26)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(mml_jLblCredencial, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(mml_jTxtCredencial)))))
+                                    .addComponent(mml_jTxtCredencial)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(mml_jLblCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(mml_jFmtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(mml_jLblDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(86, 86, 86)
@@ -231,8 +249,8 @@ public void beanView(MmlVendedor mmlVendedor) {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(mml_jTxtDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(19, 19, 19)
+                                .addComponent(mml_jFmtDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(78, 78, 78)
                                 .addComponent(mml_jCBocAtivo))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(mml_jBtnIncluir)
@@ -260,7 +278,7 @@ public void beanView(MmlVendedor mmlVendedor) {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(mml_jLblCodigo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(mml_jTxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(mml_jTxtCodigoo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(mml_jLblNome)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -270,19 +288,20 @@ public void beanView(MmlVendedor mmlVendedor) {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(mml_jLblExpediente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(mml_jTxtExpediente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(mml_jTxtExpediente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(mml_jFmtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(mml_jLblCpf)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(mml_jTxtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(28, 28, 28)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mml_jLblDataNasc)
                     .addComponent(mml_jLblAtivo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(mml_jTxtDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mml_jCBocAtivo))
+                    .addComponent(mml_jCBocAtivo)
+                    .addComponent(mml_jFmtDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mml_jBtnIncluir)
@@ -301,9 +320,9 @@ public void beanView(MmlVendedor mmlVendedor) {
         // TODO add your handling code here:
     }//GEN-LAST:event_mml_jTxtNomeActionPerformed
 
-    private void mml_jTxtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jTxtCodigoActionPerformed
+    private void mml_jTxtCodigooActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jTxtCodigooActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_mml_jTxtCodigoActionPerformed
+    }//GEN-LAST:event_mml_jTxtCodigooActionPerformed
 
     private void mml_jTxtCredencialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jTxtCredencialActionPerformed
         // TODO add your handling code here:
@@ -313,79 +332,107 @@ public void beanView(MmlVendedor mmlVendedor) {
         // TODO add your handling code here:
     }//GEN-LAST:event_mml_jTxtExpedienteActionPerformed
 
-    private void mml_jTxtCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jTxtCpfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mml_jTxtCpfActionPerformed
-
-    private void mml_jTxtDataNascActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jTxtDataNascActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mml_jTxtDataNascActionPerformed
-
     private void mml_jCBocAtivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jCBocAtivoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_mml_jCBocAtivoActionPerformed
 
     private void mml_jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jBtnExcluirActionPerformed
         // TODO add your handling code here:
-         if (Util.perguntar("Excluir?") == true) {
-            MmlClienteDao mmlClienteDao = new MmlClienteDao();
-            mmlClienteDao.delete(viewBean());
-            Util.habilitar(false, mml_jBtnAlterar, mml_jBtnCancelar, mml_jBtnExcluir);
-            Util.habilitar(true, mml_jBtnIncluir, mml_jBtnPesquisar);
-            Util.limpar( mml_jTxtNome, mml_jTxtExpediente,mml_jTxtDataNasc,mml_jCBocAtivo, mml_jTxtCpf,mml_jTxtCodigo,mml_jTxtCredencial);
+        int resp = JOptionPane.showConfirmDialog(null, "Confirma Exclusão ?");
+        if (resp == JOptionPane.YES_NO_OPTION) {
+            MmlVendedor vendedor = new MmlVendedor();
+            int codigo = Integer.parseInt(mml_jTxtCodigoo.getText());
+            vendedor.setIdVendedor(codigo);
+            vendedor.setNome(mml_jTxtNome.getText());
+            vendedor.setCredencial(mml_jTxtCredencial.getText());
+            vendedor.setExpediente(mml_jTxtExpediente.getText());
+            vendedor.setCpf(mml_jFmtCpf.getText());
+            vendedor.setDatanascimento(null);
+            if (mml_jCBocAtivo.isSelected() == true) {
+                vendedor.setAtivo("S");
+            } else {
+                vendedor.setAtivo("N");
+            }
+            MmlVendedorDao vendedorDao = new MmlVendedorDao();
+            vendedorDao.delete(vendedor);
         }
-           
-        
-            
-        
+        limpar();
+
     }//GEN-LAST:event_mml_jBtnExcluirActionPerformed
 
     private void mml_jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jBtnIncluirActionPerformed
         // TODO add your handling code here:
-        incluir = true;
-        Util.habilitar(true, mml_jTxtNome, mml_jTxtExpediente,mml_jTxtDataNasc,mml_jCBocAtivo, mml_jTxtCpf,mml_jTxtCodigo,mml_jTxtCredencial, mml_jBtnConfirmar, mml_jBtnCancelar);
-        Util.habilitar(false, mml_jBtnIncluir, mml_jBtnPesquisar);
-        Util.limpar(mml_jTxtNome, mml_jTxtExpediente,mml_jTxtDataNasc,mml_jCBocAtivo, mml_jTxtCpf,mml_jTxtCodigo,mml_jTxtCredencial);
-        mml_jTxtNome.grabFocus();
-        
+        habilitar(true);
+        limpar();
     }//GEN-LAST:event_mml_jBtnIncluirActionPerformed
 
     private void mml_jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jBtnConfirmarActionPerformed
         // TODO add your handling code here:
-         MmlClienteDao mmlClienteDao = new MmlClienteDao();
-        if (incluir) {
-            mmlClienteDao.insert(viewBean());
-        } else {
-            mmlClienteDao.update(viewBean());
+        MmlVendedor vendedor = new MmlVendedor();
+        int codigo = Integer.parseInt(mml_jTxtCodigoo.getText());
+        vendedor.setIdVendedor(codigo);
+        vendedor.setNome(mml_jTxtNome.getText());
+        vendedor.setCredencial(mml_jTxtCredencial.getText());
+        vendedor.setExpediente(mml_jTxtExpediente.getText());
+        vendedor.setCpf(mml_jFmtCpf.getText());
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            Date dataNasc = formato.parse(mml_jFmtDataNasc.getText());
+        vendedor.setDatanascimento(dataNasc);
+        
+        
+        } catch (ParseException ex) {
+            Logger.getLogger(MmljDlgCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Util.habilitar(false,mml_jTxtNome, mml_jTxtExpediente,mml_jTxtDataNasc,mml_jCBocAtivo, mml_jTxtCpf,mml_jTxtCodigo,mml_jTxtCredencial, mml_jBtnConfirmar, mml_jBtnCancelar);
-        Util.habilitar(true,  mml_jBtnIncluir, mml_jBtnPesquisar);
-        Util.limpar(mml_jTxtNome, mml_jTxtExpediente,mml_jTxtDataNasc,mml_jCBocAtivo, mml_jTxtCpf,mml_jTxtCodigo,mml_jTxtCredencial);
+        if (mml_jCBocAtivo.isSelected() == true) {
+            vendedor.setAtivo("S");
+        } else {
+            vendedor.setAtivo("N");
+        }
+        MmlVendedorDao vendedorDao = new MmlVendedorDao();
+        vendedorDao.insert(vendedor);
+        habilitar(false);
     }//GEN-LAST:event_mml_jBtnConfirmarActionPerformed
 
     private void mml_jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jBtnCancelarActionPerformed
         // TODO add your handling code here:
-     
-        Util.habilitar(false, mml_jTxtNome, mml_jTxtExpediente,mml_jTxtDataNasc,mml_jCBocAtivo, mml_jTxtCpf,mml_jTxtCodigo,mml_jTxtCredencial, mml_jBtnConfirmar, mml_jBtnCancelar, mml_jBtnAlterar, mml_jBtnExcluir);
-        Util.habilitar(true,  mml_jBtnIncluir, mml_jBtnPesquisar);
-        Util.limpar(mml_jTxtNome, mml_jTxtExpediente,mml_jTxtDataNasc,mml_jCBocAtivo, mml_jTxtCpf,mml_jTxtCodigo,mml_jTxtCredencial);
+        habilitar(false);
+        JOptionPane.showConfirmDialog(null, "Você deseja cancelar?");
+        limpar();
     }//GEN-LAST:event_mml_jBtnCancelarActionPerformed
 
     private void mml_jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jBtnPesquisarActionPerformed
-      Mml_jDlgVendedorPesquisar mml_jDlgVendedorPesquisar = new Mml_jDlgVendedorPesquisar(null, true);
-        mml_jDlgVendedorPesquisar.setTelaPai(this);
-        mml_jDlgVendedorPesquisar.setVisible(true);
-       
+        // TODO add your handling code here:
+//        String id = JOptionPane.showInputDialog(null, "Entre com o código ?");
+//        int codigo = Integer.valueOf(id);
+//        MmlVendedorDao vendedorDao = new MmlVendedorDao();
+//        MmlVendedor vendedor = (MmlVendedor) vendedorDao.list(codigo);
+//        if (vendedor == null) {
+//            JOptionPane.showMessageDialog(null, "Código não existe");
+//        } else {
+//            mml_jTxtCodigoo.setText(id);
+//            mml_jTxtNome.setText(vendedor.getNome());
+//            mml_jTxtCredencial.setText(vendedor.getCredencial());
+//            mml_jTxtExpediente.setText(vendedor.getExpediente());
+//            mml_jTxtCpf.setText(vendedor.getCpf());
+//            // jTxtDataNascimento.setText(""); // opcional, se tiver esse campo
+//            if (vendedor.getAtivo().equals("S")) {
+//                mml_jCBocAtivo.setSelected(true);
+//            } else {
+//                mml_jCBocAtivo.setSelected(false);
+//            }
+//        }
+        Mml_jDlgVendedorPesquisar jdDlgVendedorPesquisar = new Mml_jDlgVendedorPesquisar(null, true);
+        jdDlgVendedorPesquisar.setTelaPai(this);
+        jdDlgVendedorPesquisar.setVisible(true);
 
     }//GEN-LAST:event_mml_jBtnPesquisarActionPerformed
 
     private void mml_jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jBtnAlterarActionPerformed
         // TODO add your handling code here:
-     incluir = false;
-        Util.habilitar(true,mml_jTxtNome, mml_jTxtExpediente,mml_jTxtDataNasc,mml_jCBocAtivo, mml_jTxtCpf,mml_jTxtCodigo,mml_jTxtCredencial, mml_jBtnConfirmar, mml_jBtnCancelar);
-        Util.habilitar(false, mml_jBtnExcluir, mml_jBtnIncluir, mml_jBtnAlterar);
+        habilitar(true);
+        incluir = false;
         mml_jTxtNome.grabFocus();
-        
     }//GEN-LAST:event_mml_jBtnAlterarActionPerformed
 
     /**
@@ -441,6 +488,8 @@ public void beanView(MmlVendedor mmlVendedor) {
     private javax.swing.JButton mml_jBtnIncluir;
     private javax.swing.JButton mml_jBtnPesquisar;
     private javax.swing.JCheckBox mml_jCBocAtivo;
+    private javax.swing.JFormattedTextField mml_jFmtCpf;
+    private javax.swing.JFormattedTextField mml_jFmtDataNasc;
     private javax.swing.JLabel mml_jLblAtivo;
     private javax.swing.JLabel mml_jLblCodigo;
     private javax.swing.JLabel mml_jLblCpf;
@@ -448,10 +497,8 @@ public void beanView(MmlVendedor mmlVendedor) {
     private javax.swing.JLabel mml_jLblDataNasc;
     private javax.swing.JLabel mml_jLblExpediente;
     private javax.swing.JLabel mml_jLblNome;
-    private javax.swing.JTextField mml_jTxtCodigo;
-    private javax.swing.JTextField mml_jTxtCpf;
+    private javax.swing.JTextField mml_jTxtCodigoo;
     private javax.swing.JTextField mml_jTxtCredencial;
-    private javax.swing.JTextField mml_jTxtDataNasc;
     private javax.swing.JTextField mml_jTxtExpediente;
     private javax.swing.JTextField mml_jTxtNome;
     // End of variables declaration//GEN-END:variables

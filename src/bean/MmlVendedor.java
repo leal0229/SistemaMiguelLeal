@@ -127,8 +127,19 @@ public class MmlVendedor  implements java.io.Serializable {
         this.mmlDataNascimente = mmlDataNascimente;
     }
 
-
-
+@Override
+    public String toString(){
+        return this.mmlNome;
+    }
+    
+     @Override
+        public boolean equals(Object object){
+        if (object instanceof MmlVendedor){
+            MmlVendedor vendedor = (MmlVendedor)object;
+            if (this.getMmlIdVendedor()== vendedor.getMmlIdVendedor()){
+                return true;
+            }
+        }
+         return false;
+    }
 }
-
-

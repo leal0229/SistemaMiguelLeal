@@ -2,61 +2,93 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package view;
+package MmlView;
 
-
-import bean.MmlUsuarios;
-import dao.MmlUsuariosDao;
+import MmlBean.MmlUsuarios;
+import MmlDao.MmlUsuariosDao;
 import javax.swing.JOptionPane;
 import java.awt.Color;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import tools.Util;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
 
 /**
  *
- * @author Marlon
+ * @author clari
  */
-public class MmljDlgUsuario extends javax.swing.JDialog { 
-    
-  private boolean incluir;
+public class MmljDlgUsuario extends javax.swing.JDialog {
+    boolean incluir = false;
+    private MaskFormatter mascaraCpf, mascaraDataNasc;
+
     /**
      * Creates new form jDlgUsuario
      */
     public MmljDlgUsuario(java.awt.Frame parent, boolean modal) {
-      super(parent, modal);
+        super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        setTitle("Cadastro de usuarios");
-              
+        setTitle("Cadastro de Usuários");
+        getContentPane().setBackground(Color.WHITE);
+        habilitar(false);
+        try {
+            mascaraCpf = new MaskFormatter("###.###.###-##");
+            mascaraDataNasc = new MaskFormatter("##/##/####");
+            mmljFmtCpf.setFormatterFactory(new DefaultFormatterFactory(mascaraCpf));
+            mmljFmtDataNascimento.setFormatterFactory(new DefaultFormatterFactory(mascaraDataNasc));
+        } catch (ParseException ex) {
+            Logger.getLogger(MmljDlgCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-   public MmlUsuarios viewBean() {
-    MmlUsuarios mmlUsuarios = new MmlUsuarios();
-    int codigo = Util.strToInt(mmljTxtCodigo.getText());
-    mmlUsuarios.setMmlIdUsusario(codigo);
-    mmlUsuarios.setMmlNome(mmljTxtNome.getText());
-    mmlUsuarios.setMmlApelido(mmljTxtApelido.getText());
-    mmlUsuarios.setMmlCpf(mmljFmtCpf.getText());
-    mmlUsuarios.setMmlSenha(mmljPwdSenha.getText());
-    mmlUsuarios.setMmlNivel(mmljCboNivel.getSelectedIndex()); 
-    mmlUsuarios.setMmlAtivo(mmljChbAtivo.isSelected() ? "S" : "N");
-    mmlUsuarios.setMmlDataNas(Util.strToDate(mmljFmtDataNascimento.getText()));
-    return mmlUsuarios;
+
+    public void habilitar (boolean value){
+      mmljTxtCodigo.setEnabled(value);
+      mmljTxtNome.setEnabled(value);
+      mmljFmtCpf.setEnabled(value);
+      mmljCboNivel.setEnabled(value);
+      mmljFmtDataNascimento.setEnabled(value);
+      mmljTxtApelido.setEnabled(value);
+      mmljPwdSenha.setEnabled(value);
+      mmljChbAtivo.setEnabled(value);
+      
+      
+      mmljBtnIncluir.setEnabled(!value);
+      mmljBtnAlterar.setEnabled(!value);
+      mmljBtnExcluir.setEnabled(!value);
+      mmljBtnConfirmar.setEnabled(value);
+      mmljBtnCancelar.setEnabled(value);
+      mmljBtnPesquisar.setEnabled(!value);
+
+      
 }
-
-public void beanView(MmlUsuarios mmlUsuarios) {
-    mmljTxtCodigo.setText(Util.intToStr(mmlUsuarios.getMmlIdUsusario()));
-    mmljTxtNome.setText(mmlUsuarios.getMmlNome());
-    mmljTxtApelido.setText(mmlUsuarios.getMmlApelido());
-    mmljFmtCpf.setText(mmlUsuarios.getMmlCpf());
-    mmljPwdSenha.setText(mmlUsuarios.getMmlSenha());
-    mmljCboNivel.setSelectedIndex(mmlUsuarios.getMmlNivel()); 
-    mmljChbAtivo.setSelected("S".equals(mmlUsuarios.getMmlAtivo()));
-    mmljFmtDataNascimento.setText(Util.dateToStr(mmlUsuarios.getMmlDataNas()));
-}
-
-
-   
+    public void limpar(){
+        mmljTxtCodigo.setText("");
+        mmljTxtNome.setText("");
+        mmljTxtApelido.setText("");
+        mmljFmtCpf.setText("");
+        mmljFmtDataNascimento.setText("");
+        mmljPwdSenha.setText("");
+        mmljCboNivel.setSelectedItem(-1);
+        mmljChbAtivo.setSelected(false);
+    }
+      public void beanView(MmlUsuarios usuarios){
+            mmljTxtNome.setText(usuarios.getApelido());
+            mmljFmtCpf.setText(usuarios.getCpf());
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String dataNasc = formato.format(usuarios.getDataNascimento());
+            mmljFmtDataNascimento.setText(dataNasc);
+            mmljPwdSenha.setText(usuarios.getSenha());
+            
+            mmljCboNivel.setSelectedIndex(usuarios.getNivel());
+            if (usuarios.getAtivo().equals("S")) {
+            } else {
+                mmljChbAtivo.setSelected(false);
+            }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -73,9 +105,7 @@ public void beanView(MmlUsuarios mmlUsuarios) {
         mmlJLblCodigo = new javax.swing.JLabel();
         mmljTxtCodigo = new javax.swing.JTextField();
         mmljLblCpf = new javax.swing.JLabel();
-        mmljFmtCpf = new javax.swing.JTextField();
         mmlJLblDataNasc = new javax.swing.JLabel();
-        mmljFmtDataNascimento = new javax.swing.JTextField();
         mmljLblSenha = new javax.swing.JLabel();
         mmljPwdSenha = new javax.swing.JTextField();
         mmlJLblNivel = new javax.swing.JLabel();
@@ -88,6 +118,8 @@ public void beanView(MmlUsuarios mmlUsuarios) {
         mmljBtnPesquisar = new javax.swing.JButton();
         mmljLblAtivo = new javax.swing.JLabel();
         mmljChbAtivo = new javax.swing.JCheckBox();
+        mmljFmtCpf = new javax.swing.JFormattedTextField();
+        mmljFmtDataNascimento = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -112,12 +144,6 @@ public void beanView(MmlUsuarios mmlUsuarios) {
         mmljLblCpf.setText("Cpf");
 
         mmlJLblDataNasc.setText("Data de Nascimento");
-
-        mmljFmtDataNascimento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mmljFmtDataNascimentoActionPerformed(evt);
-            }
-        });
 
         mmljLblSenha.setText("Senha");
 
@@ -200,20 +226,18 @@ public void beanView(MmlUsuarios mmlUsuarios) {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(mmljBtnCancelar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(mmljBtnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, Short.MAX_VALUE))
+                                .addComponent(mmljBtnPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(mmljFmtDataNascimento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-                                        .addComponent(mmljTxtCodigo, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(mmljTxtCodigo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
                                         .addComponent(mmljTxtNome, javax.swing.GroupLayout.Alignment.LEADING))
-                                    .addComponent(mmlJLblDataNasc))
+                                    .addComponent(mmlJLblDataNasc)
+                                    .addComponent(mmljFmtDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(215, 215, 215)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(mmljTxtApelido, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(mmljFmtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(mmljTxtApelido, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(41, 41, 41)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,8 +260,11 @@ public void beanView(MmlUsuarios mmlUsuarios) {
                                 .addComponent(mmljLblSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(140, 140, 140)
                                 .addComponent(mmljLblApelido, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(mmljCboNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(149, 149, 149))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(mmljCboNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(102, 102, 102)
+                                .addComponent(mmljFmtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(90, 90, 90))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -260,14 +287,15 @@ public void beanView(MmlUsuarios mmlUsuarios) {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mmljTxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mmljFmtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mmljCboNivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(mmljCboNivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mmljFmtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(mmlJLblDataNasc)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(mmljFmtDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(mmljFmtDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(mmljLblAtivo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -276,10 +304,10 @@ public void beanView(MmlUsuarios mmlUsuarios) {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mmljBtnIncluir)
                     .addComponent(mmljBtnAlterar)
+                    .addComponent(mmljBtnExcluir)
                     .addComponent(mmljBtnConfirmar)
                     .addComponent(mmljBtnCancelar)
-                    .addComponent(mmljBtnPesquisar)
-                    .addComponent(mmljBtnExcluir))
+                    .addComponent(mmljBtnPesquisar))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
@@ -294,79 +322,110 @@ public void beanView(MmlUsuarios mmlUsuarios) {
         // TODO add your handling code here:
     }//GEN-LAST:event_mmljTxtCodigoActionPerformed
 
-    private void mmljFmtDataNascimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mmljFmtDataNascimentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mmljFmtDataNascimentoActionPerformed
-
     private void mmljCboNivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mmljCboNivelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_mmljCboNivelActionPerformed
 
     private void mmljBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mmljBtnExcluirActionPerformed
         // TODO add your handling code here:
-        if (Util.perguntar("Excluir?") == true) {
-            MmlUsuariosDao mmlUsuariosDao = new MmlUsuariosDao();
-            mmlUsuariosDao.delete(viewBean());
-            Util.habilitar(false, mmljBtnAlterar, mmljBtnCancelar, mmljBtnExcluir);
-            Util.habilitar(true, mmljBtnIncluir, mmljBtnPesquisar);
-            Util.limpar(mmljTxtNome,mmljTxtApelido,mmljFmtCpf, mmljPwdSenha,mmljCboNivel,mmljChbAtivo, mmljFmtDataNascimento, mmljTxtCodigo);
+        int resp = JOptionPane.showConfirmDialog(null, "Confirma Exclusão ?");
+        if (resp == JOptionPane.YES_NO_OPTION){
+            MmlUsuarios usuarios = new MmlUsuarios();
+            int codigo = Integer.parseInt(mmljTxtCodigo.getText());
+        usuarios.setIdusuarios(codigo);
+        usuarios.setNome( mmljTxtNome.getText() );
+        usuarios.setApelido( mmljTxtApelido.getText() );
+        usuarios.setCpf( mmljFmtCpf.getText() );
+        usuarios.setDataNascimento(null);
+        usuarios.setSenha(mmljPwdSenha.getText() );
+        usuarios.setNivel(mmljCboNivel.getSelectedIndex());
+        if(mmljChbAtivo.isSelected() == true) {
+            usuarios.setAtivo("S");
+        }else {
+            usuarios.setAtivo("N");
+                    
         }
-        
-        
+            MmlUsuariosDao usuariosDao = new MmlUsuariosDao();
+            usuariosDao.delete(usuarios);
+        }
+        limpar();
+        habilitar(false);
     }//GEN-LAST:event_mmljBtnExcluirActionPerformed
 
     private void mmljBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mmljBtnIncluirActionPerformed
         // TODO add your handling code here:
-        Util.habilitar(true, mmljTxtNome,mmljTxtApelido,mmljFmtCpf, mmljPwdSenha,mmljCboNivel,mmljChbAtivo, mmljFmtDataNascimento, mmljTxtCodigo,  mmljBtnConfirmar, mmljBtnCancelar);
-        Util.habilitar(false, mmljBtnIncluir, mmljBtnPesquisar);
-        Util.limpar( mmljTxtNome,mmljTxtApelido,mmljFmtCpf, mmljPwdSenha,mmljCboNivel,mmljChbAtivo, mmljFmtDataNascimento, mmljTxtCodigo);
-        mmljTxtNome.grabFocus();
-        
+        habilitar(true);
+         limpar();
+         incluir = true;
+        mmlJLblCodigo.grabFocus();
     }//GEN-LAST:event_mmljBtnIncluirActionPerformed
 
     private void mmljBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mmljBtnConfirmarActionPerformed
         // TODO add your handling code here:
-        MmlUsuariosDao mmlUsuariosDao = new MmlUsuariosDao();
-        if (incluir) {
-            mmlUsuariosDao.insert(viewBean());
-        } else {
-            mmlUsuariosDao.update(viewBean());
+         MmlUsuarios usuarios = new MmlUsuarios();
+        int codigo = Integer.parseInt(mmljTxtCodigo.getText());
+        usuarios.setIdusuarios(codigo);
+        usuarios.setNome( mmljTxtNome.getText() );
+        usuarios.setApelido( mmljTxtApelido.getText() );
+        usuarios.setCpf( mmljFmtCpf.getText() );
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            Date dataNasc = formato.parse(mmljFmtDataNascimento.getText());
+        usuarios.setDataNascimento(dataNasc);
+        
+        
+        } catch (ParseException ex) {
+            Logger.getLogger(MmljDlgCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Util.habilitar(false,mmljTxtNome,mmljTxtApelido,mmljFmtCpf, mmljPwdSenha,mmljCboNivel,mmljChbAtivo, mmljFmtDataNascimento, mmljTxtCodigo,  mmljBtnConfirmar, mmljBtnCancelar, mmljBtnConfirmar, mmljBtnCancelar,  mmljBtnConfirmar, mmljBtnCancelar);
-        Util.habilitar(true, mmljBtnIncluir, mmljBtnPesquisar);
-        Util.limpar(mmljTxtNome,mmljTxtApelido,mmljFmtCpf, mmljPwdSenha,mmljCboNivel,mmljChbAtivo, mmljFmtDataNascimento, mmljTxtCodigo,  mmljBtnConfirmar, mmljBtnCancelar);
-        // TODO add your handling code here:
-        
-        
-        
+        usuarios.setSenha(mmljPwdSenha.getText() );
+        usuarios.setNivel(mmljCboNivel.getSelectedIndex());
+        if(mmljChbAtivo.isSelected() == true) {
+            usuarios.setAtivo("S");
+        }else {
+            usuarios.setAtivo("N");
+                    
+        }
+        MmlUsuariosDao usuariosDao = new MmlUsuariosDao();
+        usuariosDao.insert(usuarios);
+        habilitar(false);
+        limpar();
     }//GEN-LAST:event_mmljBtnConfirmarActionPerformed
 
     private void mmljBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mmljBtnCancelarActionPerformed
         // TODO add your handling code here:
-        Util.habilitar(false,mmljTxtNome,mmljTxtApelido,mmljFmtCpf, mmljPwdSenha,mmljCboNivel,mmljChbAtivo, mmljFmtDataNascimento, mmljTxtCodigo,  mmljBtnConfirmar, mmljBtnCancelar, mmljBtnConfirmar, mmljBtnCancelar,  mmljBtnConfirmar, mmljBtnCancelar);
-        Util.habilitar(true, mmljBtnIncluir, mmljBtnPesquisar);
-        Util.limpar(mmljTxtNome,mmljTxtApelido,mmljFmtCpf, mmljPwdSenha,mmljCboNivel,mmljChbAtivo, mmljFmtDataNascimento, mmljTxtCodigo,  mmljBtnConfirmar, mmljBtnCancelar);
-      
+        habilitar(false);
+        JOptionPane.showConfirmDialog(null, "Você deseja cancelar?");
     }//GEN-LAST:event_mmljBtnCancelarActionPerformed
 
     private void mmljBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mmljBtnPesquisarActionPerformed
         // TODO add your handling code here:
-        Mml_jDlgUsuariosPesquisar dlgUsuariosPesquisar = new Mml_jDlgUsuariosPesquisar(null,true);
-        dlgUsuariosPesquisar.setTelaPai(this);
-        dlgUsuariosPesquisar.setVisible(true);
-       
-      
-      
+//        String id = JOptionPane.showInputDialog(null, "Entre com o código ?");
+//        int codigo = Integer.valueOf(id);
+//        MmlUsuariosDao usuariosDao = new MmlUsuariosDao();
+//        MmlUsuarios usuarios = (MmlUsuarios) usuariosDao.list(codigo);
+//        if ( usuarios == null){
+//            JOptionPane.showMessageDialog(null, "Código não existe");
+//        } else {
+//        mmljTxtCodigo.setText(id);
+//        mmljTxtNome.setText(usuarios.getNome());
+//        mmljTxtNome.setText(usuarios.getApelido());
+//        mmljFmtCpf.setText(usuarios.getCpf());
+//       // jTxtDataNascimento.setText(usuarios.getCpf());
+//        mmljPwdSenha.setText(usuarios.getSenha());
+//        mmljCboNivel.setSelectedIndex(usuarios.getNivel());
+//        if (usuarios.getAtivo().equals("S")){
+//        } else {
+//        mmljChbAtivo.setSelected(false);
+//        }
+//        }
+            Mml_jDlgUsuariosPesquisar jdDlgUsuariosPesquisar = new Mml_jDlgUsuariosPesquisar(null, true);
+        jdDlgUsuariosPesquisar.setTelaPai(this);
+        jdDlgUsuariosPesquisar.setVisible(true);
     }//GEN-LAST:event_mmljBtnPesquisarActionPerformed
 
     private void mmljBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mmljBtnAlterarActionPerformed
         // TODO add your handling code here:
-        incluir = false;
-        Util.habilitar(true, mmljTxtNome,mmljTxtApelido,mmljFmtCpf, mmljPwdSenha,mmljCboNivel,mmljChbAtivo, mmljFmtDataNascimento, mmljTxtCodigo,  mmljBtnConfirmar, mmljBtnCancelar);
-        Util.habilitar(false, mmljBtnExcluir, mmljBtnIncluir, mmljBtnAlterar);
-        mmljTxtNome.grabFocus();
-        
-        
+        habilitar(true);
     }//GEN-LAST:event_mmljBtnAlterarActionPerformed
 
     /**
@@ -426,8 +485,8 @@ public void beanView(MmlUsuarios mmlUsuarios) {
     private javax.swing.JButton mmljBtnPesquisar;
     private javax.swing.JComboBox<String> mmljCboNivel;
     private javax.swing.JCheckBox mmljChbAtivo;
-    private javax.swing.JTextField mmljFmtCpf;
-    private javax.swing.JTextField mmljFmtDataNascimento;
+    private javax.swing.JFormattedTextField mmljFmtCpf;
+    private javax.swing.JFormattedTextField mmljFmtDataNascimento;
     private javax.swing.JLabel mmljLblApelido;
     private javax.swing.JLabel mmljLblAtivo;
     private javax.swing.JLabel mmljLblCpf;

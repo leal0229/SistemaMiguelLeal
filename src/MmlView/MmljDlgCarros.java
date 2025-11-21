@@ -2,21 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package view;
+package MmlView;
 
-
-import bean.MmlCarros;
-import dao.MmlCarrosDao;
-
-import tools.Util;
+import MmlBean.MmlCarros;
+import MmlBean.MmlUsuarios;
+import MmlDao.MmlCarrosDao;
+import java.awt.Color;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author Marlon
+ * @author clari
  */
 public class MmljDlgCarros extends javax.swing.JDialog {
-    
-    private boolean incluir;
 
    
     public MmljDlgCarros(java.awt.Frame parent, boolean modal) {
@@ -24,33 +23,10 @@ public class MmljDlgCarros extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Cadastro de Carros");
+        getContentPane().setBackground(Color.WHITE);
         habilitar(false);
-        
-    }
-      public MmlCarros viewBean() {
-        MmlCarros mmlCarros = new MmlCarros();
-        int codigo = Util.strToInt(mml_jTxtCodigo.getText());
-        mmlCarros.setMmlIdCarros(codigo);
-        mmlCarros.setMmlPrecoVenda(Util.strToDouble(mml_JTxtPrecoVenda.getText()));
-        mmlCarros.setMmlModelo(mml_jTxtModelo.getText());
-        mmlCarros.setMmlMarca(mml_jTxtModelo.getText());
-        mmlCarros.setMmlCor(mml_jTxtCor.getText());
-        mmlCarros.setMmlAno(Util.strToDate(mml_jTxtAno.getText()));
-        mmlCarros.setMmlPreco(Util.strToDouble(mml_jTxtPreco.getText()));
-        return mmlCarros;
-    }
-
-    public void beanView(MmlCarros mmlCarros) {
-        mml_jTxtCodigo.setText(Util.intToStr(mmlCarros.getMmlIdCarros()));
-        mml_JTxtPrecoVenda.setText(Util.doubleToStr(mmlCarros.getMmlPrecoVenda()));
-        mml_jTxtModelo.setText(mmlCarros.getMmlModelo());
-        mml_jTxtMarca.setText(mmlCarros.getMmlMarca());
-        mml_jTxtCor.setText(mmlCarros.getMmlCor());
-        mml_jTxtAno.setText(Util.dateToStr(mmlCarros.getMmlAno()));
-        mml_jTxtPreco.setText(Util.doubleToStr(mmlCarros.getMmlPreco()));
     }
     
-      
     public void habilitar (boolean value){
       mml_jTxtCodigo.setEnabled(value);
       mml_JTxtPrecoVenda.setEnabled(value);
@@ -59,7 +35,7 @@ public class MmljDlgCarros extends javax.swing.JDialog {
       mml_jTxtCor.setEnabled(value);
       mml_jTxtAno.setEnabled(value);
       mml_jTxtPreco.setEnabled(value);
-    
+      mml_JTxtPrecoVenda.setEnabled(value);
       
       
       mml_jBtnIncluir.setEnabled(!value);
@@ -79,7 +55,13 @@ public class MmljDlgCarros extends javax.swing.JDialog {
     mml_jTxtPreco.setText("");
     mml_JTxtPrecoVenda.setText("");
 }
-     
+     public void beanView(MmlCarros carros){
+            mml_jTxtModelo.setText(carros.getModelo());
+            mml_jTxtMarca.setText(carros.getMarca());
+            mml_jTxtCor.setText(carros.getCor());
+            mml_jTxtPreco.setText(carros.getPreco());
+            mml_JTxtPrecoVenda.setText(carros.getPrecoVenda());
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -138,12 +120,6 @@ public class MmljDlgCarros extends javax.swing.JDialog {
         mml_jLblAno.setText("Ano");
 
         mml_jLblPreco.setText("Preço");
-
-        mml_jTxtPreco.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mml_jTxtPrecoActionPerformed(evt);
-            }
-        });
 
         mml_jBtnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar.png"))); // NOI18N
         mml_jBtnCancelar.setText("Cancelar");
@@ -301,51 +277,73 @@ public class MmljDlgCarros extends javax.swing.JDialog {
 
     private void mml_jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jBtnExcluirActionPerformed
         // TODO add your handling code here:
-      if (Util.perguntar("Excluir?") == true) {
-        MmlCarrosDao mmlCarrosDao = new MmlCarrosDao();
-        mmlCarrosDao.delete(viewBean()); 
-        Util.habilitar(true, mml_jBtnAlterar, mml_jBtnCancelar, mml_jBtnExcluir);
-        Util.habilitar(false,  mml_jBtnIncluir, mml_jBtnPesquisar,mml_jBtnAlterar, mml_jBtnExcluir);
-        Util.limpar(mml_JLblPrecoVenda, mml_jLblModelo ,mml_JLblCodigo , mml_jLblMarca, mml_jLblCor, mml_jLblAno, mml_jLblPreco);
-    }
- 
+        int resp = JOptionPane.showConfirmDialog(null, "Confirma Exclusão ?");
+        if (resp == JOptionPane.YES_NO_OPTION) {
+            MmlCarros carros = new MmlCarros();
+            int codigo = Integer.parseInt(mml_jTxtCodigo.getText());
+            carros.setIdCarros(codigo);
+            carros.setModelo(mml_jTxtModelo.getText());
+            carros.setMarca(mml_jTxtMarca.getText());
+            carros.setCor(mml_jTxtCor.getText());
+            carros.setAno(null);
+            carros.setPreco(mml_jTxtPreco.getText());
+            carros.setPrecoVenda(mml_JTxtPrecoVenda.getText());
+            MmlCarrosDao carrosDao = new MmlCarrosDao();
+            carrosDao.delete(carros);
+        }
+        limpar();
+
     }//GEN-LAST:event_mml_jBtnExcluirActionPerformed
 
     private void mml_jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jBtnIncluirActionPerformed
-        incluir = true;
-        Util.habilitar(true, mml_JLblPrecoVenda, mml_jLblModelo, mml_JLblCodigo, mml_jLblMarca, mml_jLblCor, mml_jLblAno, mml_jLblPreco, mml_jBtnConfirmar, mml_jBtnCancelar);
-        Util.habilitar(false, mml_jBtnIncluir, mml_jBtnPesquisar);
-        Util.limpar(mml_JLblPrecoVenda, mml_jLblModelo, mml_JLblCodigo, mml_jLblMarca, mml_jLblCor, mml_jLblAno, mml_jLblPreco);
-        mml_JLblCodigo.grabFocus();
+        // TODO add your handling code here:
+        habilitar(true);
+        limpar();
     }//GEN-LAST:event_mml_jBtnIncluirActionPerformed
 
     private void mml_jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jBtnConfirmarActionPerformed
         // TODO add your handling code here:
-       MmlCarrosDao mmlCarrosDao = new MmlCarrosDao();
-        if (incluir) {
-            mmlCarrosDao.insert(viewBean());
-        } else {
-            mmlCarrosDao.update(viewBean());
-        }
-        Util.habilitar(false, mml_JLblPrecoVenda, mml_jLblModelo, mml_JLblCodigo, mml_jLblMarca, mml_jLblCor, mml_jLblAno, mml_jLblPreco, mml_jBtnConfirmar, mml_jBtnCancelar);
-        Util.habilitar(true, mml_jBtnIncluir, mml_jBtnPesquisar);
-        Util.limpar(mml_JLblPrecoVenda, mml_jLblModelo, mml_JLblCodigo, mml_jLblMarca, mml_jLblCor, mml_jLblAno, mml_jLblPreco);
+        MmlCarros carros = new MmlCarros();
+        int codigo = Integer.parseInt(mml_jTxtCodigo.getText());
+        carros.setIdCarros(codigo);
+        carros.setModelo(mml_jTxtModelo.getText());
+        carros.setMarca(mml_jTxtMarca.getText());
+        carros.setCor(mml_jTxtCor.getText());
+        carros.setAno(null);
+        carros.setPreco(mml_jTxtPreco.getText());
+        carros.setPrecoVenda(mml_JTxtPrecoVenda.getText());
+        MmlCarrosDao carrosDao = new MmlCarrosDao();
+        carrosDao.insert(carros);
+        limpar();
+        habilitar(false);
     }//GEN-LAST:event_mml_jBtnConfirmarActionPerformed
 
     private void mml_jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jBtnCancelarActionPerformed
         // TODO add your handling code here:
-        Util.habilitar(false, mml_JLblPrecoVenda, mml_jLblModelo, mml_JLblCodigo, mml_jLblMarca, mml_jLblCor, mml_jLblAno, mml_jLblPreco, mml_jBtnConfirmar, mml_jBtnCancelar, mml_jBtnAlterar, mml_jBtnExcluir);
-        Util.habilitar(true,  mml_jBtnIncluir, mml_jBtnPesquisar);
-        Util.limpar(mml_JLblPrecoVenda, mml_jLblModelo, mml_JLblCodigo, mml_jLblMarca, mml_jLblCor, mml_jLblAno, mml_jLblPreco);
+        habilitar(false);
+        JOptionPane.showConfirmDialog(null, "Você deseja cancelar?");
+        limpar();
     }//GEN-LAST:event_mml_jBtnCancelarActionPerformed
 
     private void mml_jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jBtnPesquisarActionPerformed
         // TODO add your handling code here:
-           // TODO add your handling code here:
-        Mml_jDlgCarrosPesquisar  mml_jDlgCarrosPesquisar = new  Mml_jDlgCarrosPesquisar(null, true);
-        mml_jDlgCarrosPesquisar.setTelaPai(this);
-        mml_jDlgCarrosPesquisar.setVisible(true);
-       
+//        String id = JOptionPane.showInputDialog(null, "Entre com o código ?");
+//        int codigo = Integer.valueOf(id);
+//        MmlCarrosDao carrosDao = new MmlCarrosDao();
+//        MmlCarros carros = (MmlCarros) carrosDao.list(codigo);
+//        if (carros == null){
+//            JOptionPane.showMessageDialog(null, "Código não existe");
+//        } else {
+//            mml_jTxtCodigo.setText(id);
+//            mml_jTxtModelo.setText(carros.getModelo());
+//            mml_jTxtMarca.setText(carros.getMarca());
+//            mml_jTxtCor.setText(carros.getCor());
+//            mml_jTxtPreco.setText(carros.getPreco());
+//            mml_JTxtPrecoVenda.setText(carros.getPrecoVenda());
+//        }
+            Mml_jDlgCarrosPesquisar jdDlgCarrosPesquisar = new Mml_jDlgCarrosPesquisar(null, true);
+        jdDlgCarrosPesquisar.setTelaPai(this);
+        jdDlgCarrosPesquisar.setVisible(true);
 
     }//GEN-LAST:event_mml_jBtnPesquisarActionPerformed
 
@@ -355,15 +353,8 @@ public class MmljDlgCarros extends javax.swing.JDialog {
 
     private void mml_jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jBtnAlterarActionPerformed
         // TODO add your handling code here:
-        incluir = false;
-        Util.habilitar(true, mml_JLblPrecoVenda, mml_jLblModelo, mml_JLblCodigo, mml_jLblMarca, mml_jLblCor, mml_jLblAno, mml_jLblPreco,mml_jBtnConfirmar, mml_jBtnCancelar);
-        Util.habilitar(false, mml_jBtnIncluir, mml_jBtnIncluir, mml_jBtnAlterar);
-        mml_JLblPrecoVenda.grabFocus();
+        habilitar(true);
     }//GEN-LAST:event_mml_jBtnAlterarActionPerformed
-
-    private void mml_jTxtPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jTxtPrecoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mml_jTxtPrecoActionPerformed
 
     /**
      * @param args the command line arguments

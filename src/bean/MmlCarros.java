@@ -127,7 +127,21 @@ public class MmlCarros  implements java.io.Serializable {
     }
 
 
-
+@Override
+    public String toString(){
+        return this.mmlMarca;
+    }
+    
+     @Override
+        public boolean equals(Object object){
+        if (object instanceof MmlCarros){
+            MmlCarros carros = (MmlCarros)object;
+            if (this.getMmlIdCarros()== carros.getMmlIdCarros()){
+                return true;
+            }
+        }
+         return false;
+    }
 }
 
 

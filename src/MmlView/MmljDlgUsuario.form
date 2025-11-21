@@ -44,19 +44,16 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="mmljFmtDataNascimento" alignment="0" pref="206" max="32767" attributes="0"/>
-                                      <Component id="mmljTxtCodigo" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="mmljTxtCodigo" alignment="0" pref="206" max="32767" attributes="0"/>
                                       <Component id="mmljTxtNome" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                                   <Component id="mmlJLblDataNasc" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="mmljFmtDataNascimento" alignment="0" min="-2" pref="126" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <EmptySpace min="215" pref="215" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="mmljTxtApelido" alignment="0" min="-2" pref="204" max="-2" attributes="0"/>
-                                          <Component id="mmljFmtCpf" alignment="0" min="-2" pref="204" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="mmljTxtApelido" min="-2" pref="204" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
@@ -89,9 +86,13 @@
                               <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
                               <Component id="mmljLblApelido" min="-2" pref="64" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="mmljCboNivel" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="mmljCboNivel" min="-2" pref="72" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
+                              <Component id="mmljFmtCpf" min="-2" pref="126" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="149" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -121,15 +122,16 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="mmljTxtCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="mmljFmtCpf" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="mmljCboNivel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="mmljFmtCpf" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="mmlJLblDataNasc" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="mmljFmtDataNascimento" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="mmljLblAtivo" min="-2" max="-2" attributes="0"/>
@@ -141,10 +143,10 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="mmljBtnIncluir" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="mmljBtnAlterar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="mmljBtnExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="mmljBtnConfirmar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="mmljBtnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="mmljBtnPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="mmljBtnExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="24" max="32767" attributes="0"/>
           </Group>
@@ -184,17 +186,10 @@
         <Property name="text" type="java.lang.String" value="Cpf"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="mmljFmtCpf">
-    </Component>
     <Component class="javax.swing.JLabel" name="mmlJLblDataNasc">
       <Properties>
         <Property name="text" type="java.lang.String" value="Data de Nascimento"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="mmljFmtDataNascimento">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mmljFmtDataNascimentoActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="mmljLblSenha">
       <Properties>
@@ -298,6 +293,10 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JCheckBox" name="mmljChbAtivo">
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="mmljFmtCpf">
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="mmljFmtDataNascimento">
     </Component>
   </SubComponents>
 </Form>
