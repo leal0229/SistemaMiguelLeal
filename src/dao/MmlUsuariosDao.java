@@ -59,6 +59,17 @@ public class MmlUsuariosDao extends DaoAbstract{
         session.getTransaction().commit();
         return lista;
     }
+    public boolean login(String user, String pass) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(MmlUsuarios.class);
+        criteria.add(Restrictions.eq("mml_nome", user));
+        criteria.add(Restrictions.eq("mml_senha", pass));
+
+        List resultado = criteria.list();
+        session.getTransaction().commit();
+
+        return !resultado.isEmpty();
+}
     
     
     public static void main(String[] args) {
