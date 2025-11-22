@@ -24,10 +24,11 @@ public class MmljDlgVendedor extends javax.swing.JDialog {
      */
     public MmljDlgVendedor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-       
+       initComponents();
         setLocationRelativeTo(null);
         setTitle("Cadastro de Vendedor");
         getContentPane().setBackground(Color.WHITE);
+        Util.habilitar(false, mml_jTxtCodigo, mml_jTxtNome, mml_jTxtExpediente,mml_jTxtDataNasc,mml_jCBocAtivo, mml_jTxtCpf,mml_jTxtCodigo,mml_jTxtCredencial);
         
     }
     public MmlVendedor viewBean() {

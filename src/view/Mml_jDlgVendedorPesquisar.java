@@ -4,12 +4,20 @@
  */
 package view;
 
+import bean.MmlUsuarios;
+import bean.MmlVendas;
+import bean.MmlVendedor;
+import dao.MmlVendedorDao;
+import java.util.List;
+import tools.Util;
+
 /**
  *
  * @author Marlom
  */
 public class Mml_jDlgVendedorPesquisar extends javax.swing.JDialog {
   MmljDlgVendedor dlgVendedor;
+  Mml_Controller_Vendedor mml_Controller_Vendedor;
     /**
      * Creates new form Mml_jDlgVendedor
      */
@@ -17,6 +25,11 @@ public class Mml_jDlgVendedorPesquisar extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        MmlVendedorDao vendedor = new MmlVendedorDao();
+        List lista = (List) vendedor.listAll();
+        mml_Controller_Vendedor = new Mml_Controller_Vendedor();
+        mml_Controller_Vendedor.setList(lista);
+        jTable1.setModel(mml_Controller_Vendedor);
     }
      public void setTelaPai(MmljDlgVendedor dlgVendedor){
         this.dlgVendedor = dlgVendedor;
@@ -55,6 +68,11 @@ public class Mml_jDlgVendedorPesquisar extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -81,10 +99,23 @@ public class Mml_jDlgVendedorPesquisar extends javax.swing.JDialog {
 
     private void jBtnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOKActionPerformed
         // TODO add your handling code here:
+        if (jTable1.getSelectedRow() == -1){
+            Util.mensagem("Selecione uma linha primeiro");
+        } else {
+            MmlVendedor vendedor =  (MmlVendedor) mml_Controller_Vendedor.getBean( jTable1.getSelectedRow() );
+        dlgVendedor.beanView(vendedor);
+        this.setVisible(false);
+        }
         
-      
-        setVisible(false);
+        
     }//GEN-LAST:event_jBtnOKActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 2){
+        jBtnOKActionPerformed(null);
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments

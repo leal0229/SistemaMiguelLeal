@@ -8,6 +8,7 @@ import bean.MmlUsuarios;
 import bean.MmlVendas;
 import dao.MmlUsuariosDao;
 import java.util.List;
+import tools.Util;
 
 /**
  *
@@ -21,7 +22,7 @@ public class Mml_jDlgVendasPesquisar extends javax.swing.JDialog {
     /**
      * Creates new form JDlgProdutosPesquisar
      */
-    MmljDlgVendas mmljDlgVendas;
+     private MmljDlgVendas mmljDlgVendas;
     Mml_Controller_Vendas mml_Controller_Vendas;
     
     public Mml_jDlgVendasPesquisar(java.awt.Frame parent, boolean modal) {
@@ -71,6 +72,11 @@ public class Mml_jDlgVendasPesquisar extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -104,10 +110,21 @@ public class Mml_jDlgVendasPesquisar extends javax.swing.JDialog {
 
     private void jBtnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOKActionPerformed
         // TODO add your handling code here:
-        MmlVendas usuarios =  mml_Controller_Vendas.getBean( jTable1.getSelectedRow() );
-        mmljDlgVendas.beanView(usuarios);
+          if (jTable1.getSelectedRow() == -1){
+            Util.mensagem("Selecione uma liha");
+        } else {
+        MmlVendas vendas =  (MmlVendas) mml_Controller_Vendas.getBean( jTable1.getSelectedRow() );
+        mmljDlgVendas.beanView(vendas);
         this.setVisible(false);
+        }
     }//GEN-LAST:event_jBtnOKActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+         if (evt.getClickCount() == 2){
+        jBtnOKActionPerformed(null);
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments

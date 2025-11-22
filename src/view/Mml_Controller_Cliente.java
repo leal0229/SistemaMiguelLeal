@@ -18,7 +18,7 @@ public class Mml_Controller_Cliente   extends AbstractTableModel{
     
     private List lstCliente;
 
-    public void setList(List lstcarros) {
+    public void setList(List lstCliente) {
         this.lstCliente = lstCliente;
     }
 
@@ -55,13 +55,13 @@ public class Mml_Controller_Cliente   extends AbstractTableModel{
     @Override
     public String getColumnName(int columnIndex) {
         if ( columnIndex == 0) {
-            return "";
+            return "Código";
         } else if ( columnIndex == 1) {
-            return "";
+            return "nome";
         } else if ( columnIndex == 2) {
-            return "";
+            return "rg";
         } else if ( columnIndex == 3) {
-            return "";
+            return "cpf";
         } 
         return "";
     }

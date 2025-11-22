@@ -6,6 +6,7 @@
 package dao;
 
 import bean.MmlCarros; 
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
@@ -58,7 +59,7 @@ public class MmlCarrosDao extends DaoAbstract{
         Criteria criteria = session.createCriteria(MmlCarros.class);
         List lista = criteria.list();
         session.getTransaction().commit();
-        return lista;
+        return (ArrayList) lista;
     }
     
 }

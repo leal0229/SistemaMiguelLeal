@@ -5,12 +5,17 @@
  */
 package view;
 
+import bean.MmlUsuarios;
+import dao.MmlUsuariosDao;
+import java.util.List;
+import tools.Util;
+
 /**
  *
  * @author Marlom
  */
 public class Mml_jDlgUsuariosPesquisar extends javax.swing.JDialog {
- 
+    Mml_Controller_Usuarios mml_Controller_Usuarios;
     MmljDlgUsuario dlgUsuario;
     /**
      * Creates new form Mml_jDlgUsuariosPesquisar
@@ -19,6 +24,12 @@ public class Mml_jDlgUsuariosPesquisar extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        MmlUsuariosDao usuariosDao = new MmlUsuariosDao();
+        List lista = (List) usuariosDao.listAll();
+        mml_Controller_Usuarios = new Mml_Controller_Usuarios();
+        mml_Controller_Usuarios.setList(lista);
+        jTable1.setModel(mml_Controller_Usuarios);
+        
     }
 
     public void setTelaPai(MmljDlgUsuario dlgUsuario){
@@ -50,6 +61,11 @@ public class Mml_jDlgUsuariosPesquisar extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jbtnok.setText("ok");
@@ -84,8 +100,21 @@ public class Mml_jDlgUsuariosPesquisar extends javax.swing.JDialog {
 
     private void jbtnokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnokActionPerformed
 
-        setVisible(false);
+        if (jTable1.getSelectedRow() == -1){
+            Util.mensagem("Selecione uma linha ");
+        } else {
+        MmlUsuarios usuarios =  (MmlUsuarios) mml_Controller_Usuarios.getBean( jTable1.getSelectedRow() );
+        dlgUsuario.beanView(usuarios);
+        this.setVisible(false);
+        }
     }//GEN-LAST:event_jbtnokActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+         if (evt.getClickCount() == 2){
+        jbtnokActionPerformed(null);
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments

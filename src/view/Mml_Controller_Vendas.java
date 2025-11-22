@@ -18,8 +18,8 @@ public class Mml_Controller_Vendas   extends AbstractTableModel{
     
     private List lstVendas;
 
-    public void setList(List lstcarros) {
-        this.lstVendas = lstcarros;
+    public void setList(List lstVendas) {
+        this.lstVendas = lstVendas;
     }
 
     public MmlVendas getBean(int rowIndex) {
@@ -55,13 +55,13 @@ public class Mml_Controller_Vendas   extends AbstractTableModel{
     @Override
     public String getColumnName(int columnIndex) {
         if ( columnIndex == 0) {
-            return "getMmlIdVendas";
+            return "Código da Vendas";
         } else if ( columnIndex == 1) {
-            return "getMmlModelo";
+            return "Cliente";
         } else if ( columnIndex == 2) {
-            return "getMmlPreco";
+            return "Vendedor";
         } else if ( columnIndex == 3) {
-            return "getMmlAno";
+            return "data";
         } 
         return "";
     }

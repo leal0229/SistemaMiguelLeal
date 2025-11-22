@@ -458,7 +458,7 @@ public class MmljDlgCliente extends javax.swing.JDialog {
         mml_jDlgClientePesquisar.setTelaPai(this);
         mml_jDlgClientePesquisar.setVisible(true);
       
-
+        
         
     }//GEN-LAST:event_jbtnPesquisarActionPerformed
 

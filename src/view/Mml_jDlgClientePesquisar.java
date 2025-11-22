@@ -4,12 +4,17 @@
  */
 package view;
 
+import bean.MmlCliente;
+import dao.MmlClienteDao;
+import java.util.List;
+import tools.Util;
+
 /**
  *
  * @author Marlom
  */
 public class Mml_jDlgClientePesquisar extends javax.swing.JDialog {
-     
+    Mml_Controller_Cliente mml_Controller_Cliente;
     MmljDlgCliente dlgCliente;
     /**
     /**
@@ -20,6 +25,11 @@ public class Mml_jDlgClientePesquisar extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        MmlClienteDao clientesDAO = new MmlClienteDao();
+        List lista = (List) clientesDAO.listAll();
+        mml_Controller_Cliente = new Mml_Controller_Cliente();
+        mml_Controller_Cliente.setList(lista);
+        jTable1.setModel(mml_Controller_Cliente);
     }
      public void setTelaPai(MmljDlgCliente dlgCliente){
        this.dlgCliente = dlgCliente;
@@ -51,6 +61,11 @@ public class Mml_jDlgClientePesquisar extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jBtnOK.setText("OK");
@@ -84,10 +99,21 @@ public class Mml_jDlgClientePesquisar extends javax.swing.JDialog {
 
     private void jBtnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOKActionPerformed
         // TODO add your handling code here:
-        int linSel = jTable1.getSelectedRow();
-       
-        setVisible(false);
+        if (jTable1.getSelectedRow() == -1){
+            Util.mensagem("Selecione uma linha primeiro");
+        } else {
+        MmlCliente mmlClientes =  (MmlCliente) mml_Controller_Cliente.getBean( jTable1.getSelectedRow() );
+        dlgCliente.beanView(mmlClientes);
+        this.setVisible(false);
+        }
     }//GEN-LAST:event_jBtnOKActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+         if (evt.getClickCount() == 2){
+        jBtnOKActionPerformed(null);
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments

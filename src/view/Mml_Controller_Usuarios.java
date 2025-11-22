@@ -18,8 +18,8 @@ public class Mml_Controller_Usuarios   extends AbstractTableModel{
     
     private List lstUsuarios;
 
-    public void setList(List lstcarros) {
-        this.lstUsuarios = lstcarros;
+    public void setList(List lstusuarios) {
+        this.lstUsuarios = lstusuarios;
     }
 
     public MmlUsuarios getBean(int rowIndex) {
@@ -55,13 +55,13 @@ public class Mml_Controller_Usuarios   extends AbstractTableModel{
     @Override
     public String getColumnName(int columnIndex) {
         if ( columnIndex == 0) {
-            return "getMmlIdUsuarios";
+            return "Código do Usuarios";
         } else if ( columnIndex == 1) {
-            return "getMmlModelo";
+            return "Modelo";
         } else if ( columnIndex == 2) {
-            return "getMmlPreco";
+            return "Preco";
         } else if ( columnIndex == 3) {
-            return "getMmlAno";
+            return "Ano";
         } 
         return "";
     }
