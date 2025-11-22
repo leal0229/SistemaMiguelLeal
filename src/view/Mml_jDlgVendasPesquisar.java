@@ -7,6 +7,7 @@ package view;
 import bean.MmlUsuarios;
 import bean.MmlVendas;
 import dao.MmlUsuariosDao;
+import dao.MmlVendasDao;
 import java.util.List;
 import tools.Util;
 
@@ -30,8 +31,8 @@ public class Mml_jDlgVendasPesquisar extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         mml_Controller_Vendas = new Mml_Controller_Vendas();
-        MmlUsuariosDao usuariosDAO = new MmlUsuariosDao();
-        List lista = (List) usuariosDAO.listAll();
+        MmlVendasDao vendasDAO = new MmlVendasDao();
+        List lista = (List) vendasDAO.listAll();
         mml_Controller_Vendas.setList(lista);
         jTable1.setModel(mml_Controller_Vendas);
     }

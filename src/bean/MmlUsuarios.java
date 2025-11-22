@@ -39,7 +39,7 @@ public class MmlUsuarios  implements java.io.Serializable {
        this.mmlApelido = mmlApelido;
        this.mmlCpf = mmlCpf;
        this.mmlSenha = mmlSenha;
-       this.mmlAtivo = mmlSenha;
+       this.mmlAtivo = mmlAtivo;
        this.mmlNivel = mmlNivel;
        this.mmlDataNas = mmlDataNas;
     }

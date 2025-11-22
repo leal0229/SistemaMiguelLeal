@@ -48,7 +48,7 @@ public class Mml_Controller_Vendas   extends AbstractTableModel{
             return mmlVendas.getMmlVendedor();
         } else if (columnIndex ==3) {
             return mmlVendas.getMmlData();
-        }
+                }
         return "";
     }
 

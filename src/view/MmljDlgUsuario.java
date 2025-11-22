@@ -27,6 +27,8 @@ public class MmljDlgUsuario extends javax.swing.JDialog {
       super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        Util.habilitar(false, mmljTxtNome,mmljTxtApelido,mmljFmtCpf, mmljPwdSenha,mmljCboNivel,mmljChbAtivo, mmljFmtDataNascimento, mmljTxtCodigo,  mmljBtnConfirmar, mmljBtnCancelar);
+       
         setTitle("Cadastro de usuarios");
               
     }
@@ -39,7 +41,11 @@ public class MmljDlgUsuario extends javax.swing.JDialog {
     mmlUsuarios.setMmlCpf(mmljFmtCpf.getText());
     mmlUsuarios.setMmlSenha(mmljPwdSenha.getText());
     mmlUsuarios.setMmlNivel(mmljCboNivel.getSelectedIndex()); 
-    mmlUsuarios.setMmlAtivo(mmljChbAtivo.isSelected() ? "S" : "N");
+    if (mmljChbAtivo.isSelected() == true) {
+                mmlUsuarios.setMmlAtivo("S");
+            } else {
+                mmlUsuarios.setMmlAtivo("N");
+            }
     mmlUsuarios.setMmlDataNas(Util.strToDate(mmljFmtDataNascimento.getText()));
     return mmlUsuarios;
 }
@@ -317,24 +323,26 @@ public void beanView(MmlUsuarios mmlUsuarios) {
 
     private void mmljBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mmljBtnIncluirActionPerformed
         // TODO add your handling code here:
+        incluir = true;
         Util.habilitar(true, mmljTxtNome,mmljTxtApelido,mmljFmtCpf, mmljPwdSenha,mmljCboNivel,mmljChbAtivo, mmljFmtDataNascimento, mmljTxtCodigo,  mmljBtnConfirmar, mmljBtnCancelar);
         Util.habilitar(false, mmljBtnIncluir, mmljBtnPesquisar);
         Util.limpar( mmljTxtNome,mmljTxtApelido,mmljFmtCpf, mmljPwdSenha,mmljCboNivel,mmljChbAtivo, mmljFmtDataNascimento, mmljTxtCodigo);
         mmljTxtNome.grabFocus();
         
+
+        
     }//GEN-LAST:event_mmljBtnIncluirActionPerformed
 
     private void mmljBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mmljBtnConfirmarActionPerformed
         // TODO add your handling code here:
-        MmlUsuariosDao mmlUsuariosDao = new MmlUsuariosDao();
-        if (incluir) {
-            mmlUsuariosDao.insert(viewBean());
+        MmlUsuariosDao usuariosDAO = new MmlUsuariosDao();
+        if (incluir == true) {
+            usuariosDAO.insert(viewBean());
         } else {
-            mmlUsuariosDao.update(viewBean());
-        }
-        Util.habilitar(false,mmljTxtNome,mmljTxtApelido,mmljFmtCpf, mmljPwdSenha,mmljCboNivel,mmljChbAtivo, mmljFmtDataNascimento, mmljTxtCodigo,  mmljBtnConfirmar, mmljBtnCancelar, mmljBtnConfirmar, mmljBtnCancelar,  mmljBtnConfirmar, mmljBtnCancelar);
+            usuariosDAO.update(viewBean());
+        }        Util.habilitar(false,mmljTxtNome,mmljTxtApelido,mmljFmtCpf, mmljPwdSenha,mmljCboNivel,mmljChbAtivo, mmljFmtDataNascimento, mmljTxtCodigo, mmljBtnCancelar, mmljBtnConfirmar,  mmljBtnConfirmar);
         Util.habilitar(true, mmljBtnIncluir, mmljBtnPesquisar);
-        Util.limpar(mmljTxtNome,mmljTxtApelido,mmljFmtCpf, mmljPwdSenha,mmljCboNivel,mmljChbAtivo, mmljFmtDataNascimento, mmljTxtCodigo,  mmljBtnConfirmar, mmljBtnCancelar);
+        Util.limpar(mmljTxtNome,mmljTxtApelido,mmljFmtCpf, mmljPwdSenha,mmljCboNivel,mmljChbAtivo, mmljFmtDataNascimento, mmljTxtCodigo);
         // TODO add your handling code here:
         
         
@@ -345,7 +353,7 @@ public void beanView(MmlUsuarios mmlUsuarios) {
         // TODO add your handling code here:
         Util.habilitar(false,mmljTxtNome,mmljTxtApelido,mmljFmtCpf, mmljPwdSenha,mmljCboNivel,mmljChbAtivo, mmljFmtDataNascimento, mmljTxtCodigo,  mmljBtnConfirmar, mmljBtnCancelar, mmljBtnConfirmar, mmljBtnCancelar,  mmljBtnConfirmar, mmljBtnCancelar);
         Util.habilitar(true, mmljBtnIncluir, mmljBtnPesquisar);
-        Util.limpar(mmljTxtNome,mmljTxtApelido,mmljFmtCpf, mmljPwdSenha,mmljCboNivel,mmljChbAtivo, mmljFmtDataNascimento, mmljTxtCodigo,  mmljBtnConfirmar, mmljBtnCancelar);
+        Util.limpar(mmljTxtNome,mmljTxtApelido,mmljFmtCpf, mmljPwdSenha,mmljCboNivel,mmljChbAtivo, mmljFmtDataNascimento, mmljTxtCodigo);
       
     }//GEN-LAST:event_mmljBtnCancelarActionPerformed
 

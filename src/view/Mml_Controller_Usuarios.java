@@ -57,11 +57,11 @@ public class Mml_Controller_Usuarios   extends AbstractTableModel{
         if ( columnIndex == 0) {
             return "Código do Usuarios";
         } else if ( columnIndex == 1) {
-            return "Modelo";
+            return "Nome";
         } else if ( columnIndex == 2) {
-            return "Preco";
+            return "Apelido";
         } else if ( columnIndex == 3) {
-            return "Ano";
+            return "Cpf";
         } 
         return "";
     }
