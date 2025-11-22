@@ -1,5 +1,5 @@
 package bean;
-// Generated 10/10/2025 16:46:28 by Hibernate Tools 4.3.1
+// Generated 21/11/2025 20:16:56 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -41,11 +41,12 @@ public class MmlCliente  implements java.io.Serializable {
      private String mmlCidade;
      private String mmlCep;
      private String mmlBairro;
+     
 
     public MmlCliente() {
     }
 
-    public MmlCliente(String mmlNome, String mmlRg, String mmlSexo, String mmlAtivo, String mmlCpf, Date mmlDataCadastro, String mmlTelefone, String mmlCelular, Date mmlDatanascimento, String mmlEnderoco, String mmlEmail, String mmlCidade, String mmlCep, String mmlBairro, Set mmlVendases) {
+    public MmlCliente(String mmlNome, String mmlRg, String mmlSexo, String mmlAtivo, String mmlCpf, Date mmlDataCadastro, String mmlTelefone, String mmlCelular, Date mmlDatanascimento, String mmlEnderoco, String mmlEmail, String mmlCidade, String mmlCep, String mmlBairro) {
        this.mmlNome = mmlNome;
        this.mmlRg = mmlRg;
        this.mmlSexo = mmlSexo;
@@ -60,9 +61,10 @@ public class MmlCliente  implements java.io.Serializable {
        this.mmlCidade = mmlCidade;
        this.mmlCep = mmlCep;
        this.mmlBairro = mmlBairro;
+       
     }
    
-     @Id @GeneratedValue(strategy=IDENTITY)
+     @Id 
 
     
     @Column(name="mml_idCliente", unique=true, nullable=false)
@@ -214,6 +216,7 @@ public class MmlCliente  implements java.io.Serializable {
         this.mmlBairro = mmlBairro;
     }
 
+
  @Override
     public String toString(){
         return this.mmlNome;
@@ -230,6 +233,3 @@ public class MmlCliente  implements java.io.Serializable {
          return false;
     }
 }
-
-
-

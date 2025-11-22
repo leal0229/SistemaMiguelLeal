@@ -25,8 +25,8 @@ public class Mm_Controller_Vendas_Carros extends AbstractTableModel {
         return (MmlVendasCarros) lstMmlVendasCarros.get(rowIndex);
     }
     
-    public void addBean (MmlVendasCarros pedidosProdutos){
-        this.lstMmlVendasCarros.add(pedidosProdutos);
+    public void addBean (MmlVendasCarros vendasCarros){
+        this.lstMmlVendasCarros.add(vendasCarros);
         this.fireTableDataChanged();
     }
     
@@ -48,17 +48,17 @@ public class Mm_Controller_Vendas_Carros extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        MmlVendasCarros pedidosProdutos = (MmlVendasCarros) lstMmlVendasCarros.get( rowIndex);
+        MmlVendasCarros vendasCarros = (MmlVendasCarros) lstMmlVendasCarros.get( rowIndex);
         if ( columnIndex == 0 ){
-            return pedidosProdutos.getMmlIdVendasCarros();
+            return vendasCarros.getMmlIdVendasCarros();
         } else if (columnIndex ==1) {
-            return pedidosProdutos.getMmlCarros();        
+            return vendasCarros.getMmlCarros();        
         } else if (columnIndex ==2) {
-            return pedidosProdutos.getMmlQuantidade();
+            return vendasCarros.getMmlQuantidade();
         } else if (columnIndex ==3) {
-            return pedidosProdutos.getMmlValorUnitario();
+            return vendasCarros.getMmlValorUnitario();
         } else if (columnIndex ==4) {
-            return pedidosProdutos.getMmlVendas();
+            return vendasCarros.getMmlVendas();
         }
         return "";
     }

@@ -1,17 +1,13 @@
 package bean;
-// Generated 10/10/2025 16:46:28 by Hibernate Tools 4.3.1
+// Generated 21/11/2025 20:16:56 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -37,16 +33,7 @@ public class MmlVendedor  implements java.io.Serializable {
     public MmlVendedor() {
     }
 
-	
     public MmlVendedor(String mmlNome, int mmlCredencial, String mmlExpediente, String mmlAtivo, String mmlCpf, Date mmlDataNascimente) {
-        this.mmlNome = mmlNome;
-        this.mmlCredencial = mmlCredencial;
-        this.mmlExpediente = mmlExpediente;
-        this.mmlAtivo = mmlAtivo;
-        this.mmlCpf = mmlCpf;
-        this.mmlDataNascimente = mmlDataNascimente;
-    }
-    public MmlVendedor(String mmlNome, int mmlCredencial, String mmlExpediente, String mmlAtivo, String mmlCpf, Date mmlDataNascimente, Set mmlVendases) {
        this.mmlNome = mmlNome;
        this.mmlCredencial = mmlCredencial;
        this.mmlExpediente = mmlExpediente;
@@ -127,7 +114,7 @@ public class MmlVendedor  implements java.io.Serializable {
         this.mmlDataNascimente = mmlDataNascimente;
     }
 
-@Override
+ @Override
     public String toString(){
         return this.mmlNome;
     }

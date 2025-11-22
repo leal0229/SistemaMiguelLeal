@@ -1,5 +1,5 @@
 package bean;
-// Generated 10/10/2025 16:46:28 by Hibernate Tools 4.3.1
+// Generated 21/11/2025 20:16:56 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -33,6 +33,7 @@ public class MmlCarros  implements java.io.Serializable {
      private Date mmlAno;
      private double mmlPreco;
      private double mmlPrecoVenda;
+     
 
     public MmlCarros() {
     }
@@ -52,9 +53,10 @@ public class MmlCarros  implements java.io.Serializable {
        this.mmlAno = mmlAno;
        this.mmlPreco = mmlPreco;
        this.mmlPrecoVenda = mmlPrecoVenda;
+       
     }
    
-     @Id @GeneratedValue(strategy=IDENTITY)
+     @Id 
 
     
     @Column(name="mml_idCarros", unique=true, nullable=false)
@@ -126,10 +128,9 @@ public class MmlCarros  implements java.io.Serializable {
         this.mmlPrecoVenda = mmlPrecoVenda;
     }
 
-
-@Override
+ @Override
     public String toString(){
-        return this.mmlMarca;
+        return this.mmlModelo;
     }
     
      @Override
@@ -138,10 +139,9 @@ public class MmlCarros  implements java.io.Serializable {
             MmlCarros carros = (MmlCarros)object;
             if (this.getMmlIdCarros()== carros.getMmlIdCarros()){
                 return true;
-            }
+        }
         }
          return false;
     }
-}
-
+        }
 

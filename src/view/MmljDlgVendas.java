@@ -13,6 +13,7 @@ import dao.MmlUsuariosDao;
 import dao.MmlVendasDao;
 import dao.MmlVendedorDao;
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import tools.Util;
@@ -23,7 +24,7 @@ import tools.Util;
  * @author Marlon
  */
 public class MmljDlgVendas extends javax.swing.JDialog {
-
+     Mm_Controller_Vendas_Carros mm_Controller_Vendas_Carros;
      private boolean incluir;
     /**
      * Creates new form MmljDlgVendas
@@ -46,6 +47,9 @@ public class MmljDlgVendas extends javax.swing.JDialog {
             for(int i = 0; i < lista.size(); i++){
             mml_jcboVendedor.addItem((MmlVendedor)lista.get(i));
         }
+        mm_Controller_Vendas_Carros = new Mm_Controller_Vendas_Carros();
+        mm_Controller_Vendas_Carros.setList(new ArrayList());
+        jTable1.setModel(mm_Controller_Vendas_Carros);
     }
   public MmlVendas viewBean() {
         MmlVendas vendas = new MmlVendas();
@@ -212,21 +216,21 @@ public class MmljDlgVendas extends javax.swing.JDialog {
 
         mml_jLblIdVendedor.setText("id vendedor");
 
-        mml_jBtnIncluirProd.setText("Incluir");
+        mml_jBtnIncluirProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/incluir.png"))); // NOI18N
         mml_jBtnIncluirProd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mml_jBtnIncluirProdActionPerformed(evt);
             }
         });
 
-        mml_jBtnAlterarProd.setText("Alterar");
+        mml_jBtnAlterarProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/alterar.png"))); // NOI18N
         mml_jBtnAlterarProd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mml_jBtnAlterarProdActionPerformed(evt);
             }
         });
 
-        mml_jBtnExcluirProd.setText("Excluir");
+        mml_jBtnExcluirProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/excluir.png"))); // NOI18N
         mml_jBtnExcluirProd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mml_jBtnExcluirProdActionPerformed(evt);
@@ -277,17 +281,14 @@ public class MmljDlgVendas extends javax.swing.JDialog {
                         .addComponent(mml_jBtnCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(mml_jBtnPesquisar)
-                        .addGap(0, 304, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(211, 211, 211)
-                                .addComponent(mml_jcboVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(137, 137, 137)))
+                                .addComponent(mml_jcboVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(mml_jBtnIncluirProd)
                             .addComponent(mml_jBtnAlterarProd)
@@ -321,7 +322,7 @@ public class MmljDlgVendas extends javax.swing.JDialog {
                         .addComponent(mml_jBtnAlterarProd)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(mml_jBtnExcluirProd)
-                        .addContainerGap(474, Short.MAX_VALUE))
+                        .addContainerGap(450, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -336,7 +337,7 @@ public class MmljDlgVendas extends javax.swing.JDialog {
                                     .addComponent(mml_jLblData)
                                     .addComponent(mml_jLblIdVendedor))
                                 .addGap(29, 29, 29)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -409,7 +410,7 @@ public class MmljDlgVendas extends javax.swing.JDialog {
 
     private void mml_jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jBtnIncluirActionPerformed
         // TODO add your handling code here:
-        Util.habilitar(true, mml_jTxtIdVendas, mml_jTxtValor, mml_jTxtFormasdePagamento, mml_jTxtData, mml_jcboClientes, mml_jcboVendedor, mml_jBtnConfirmar, mml_jBtnCancelar);
+        Util.habilitar(true, mml_jTxtIdVendas, mml_jTxtValor, mml_jTxtFormasdePagamento, mml_jTxtData, mml_jcboClientes, mml_jcboVendedor, mml_jBtnConfirmar, mml_jBtnCancelar, mml_jBtnAlterarProd, mml_jBtnExcluirProd, mml_jBtnIncluirProd);
         Util.habilitar(false, mml_jBtnIncluir, mml_jBtnPesquisar);
         Util.limpar(mml_jTxtIdVendas, mml_jTxtValor, mml_jTxtFormasdePagamento, mml_jTxtData, mml_jcboClientes, mml_jcboVendedor);
         mml_jTxtIdVendas.grabFocus();
@@ -430,8 +431,11 @@ public class MmljDlgVendas extends javax.swing.JDialog {
 
     private void mml_jBtnIncluirProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jBtnIncluirProdActionPerformed
         // TODO add your handling code here:
-        MmljDlgVendasCarros mmljDlgVendasCarros = new MmljDlgVendasCarros(null, true);
-        mmljDlgVendasCarros.setVisible(true);
+        
+        MmljDlgVendasCarros jDlgMmlVendasProdutos = new MmljDlgVendasCarros(null, true);
+        jDlgMmlVendasProdutos.setTelaAnterior(this);
+        jDlgMmlVendasProdutos.setVisible(true);
+        
     }//GEN-LAST:event_mml_jBtnIncluirProdActionPerformed
 
     private void mml_jBtnAlterarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jBtnAlterarProdActionPerformed
@@ -442,9 +446,15 @@ public class MmljDlgVendas extends javax.swing.JDialog {
 
     private void mml_jBtnExcluirProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jBtnExcluirProdActionPerformed
         // TODO add your handling code here:
-        MmljDlgVendasCarros mmljDlgVendasCarros = new MmljDlgVendasCarros(null, true);
-        mmljDlgVendasCarros.setVisible(true);
-        if (Util.perguntar("Deseja excluir o produto?") == true);
+        int rowIndex = jTable1.getSelectedRow();
+                if (rowIndex == -1) {
+                    Util.mensagem("Selecione alguma linha primeiro");
+                    return;
+                }
+                if (Util.perguntar("Deseja Excluir?") == true) {
+                    mm_Controller_Vendas_Carros.removeBean(rowIndex);
+       
+                }
     }//GEN-LAST:event_mml_jBtnExcluirProdActionPerformed
 
     /**

@@ -1,5 +1,5 @@
 package bean;
-// Generated 10/10/2025 16:46:28 by Hibernate Tools 4.3.1
+// Generated 21/11/2025 20:16:56 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -27,24 +27,24 @@ public class MmlUsuarios  implements java.io.Serializable {
      private String mmlApelido;
      private String mmlCpf;
      private String mmlSenha;
+     private String mmlAtivo;
      private int mmlNivel;
      private Date mmlDataNas;
-     private String mmlAtivo;
 
     public MmlUsuarios() {
     }
 
-    public MmlUsuarios(String mmlNome, String mmlApelido, String mmlCpf, String mmlSenha, int mmlNivel, Date mmlDataNas, String mmlAtivo) {
+    public MmlUsuarios(String mmlNome, String mmlApelido, String mmlCpf, String mmlSenha, String mmlAtivo, int mmlNivel, Date mmlDataNas) {
        this.mmlNome = mmlNome;
        this.mmlApelido = mmlApelido;
        this.mmlCpf = mmlCpf;
        this.mmlSenha = mmlSenha;
+       this.mmlAtivo = mmlSenha;
        this.mmlNivel = mmlNivel;
        this.mmlDataNas = mmlDataNas;
-       this.mmlAtivo = mmlAtivo;
     }
    
-     @Id @GeneratedValue(strategy=IDENTITY)
+     @Id 
 
     
     @Column(name="mml_idUsusario", unique=true, nullable=false)
@@ -95,6 +95,15 @@ public class MmlUsuarios  implements java.io.Serializable {
     public void setMmlSenha(String mmlSenha) {
         this.mmlSenha = mmlSenha;
     }
+    
+    @Column(name="mml_ativo", length=20)
+    public String getMmlAtivo() {
+        return this.mmlAtivo;
+    }
+    
+    public void setMmlAtivo(String mmlAtivo) {
+        this.mmlAtivo = mmlAtivo;
+    }
 
     
     @Column(name="mml_nivel")
@@ -114,16 +123,6 @@ public class MmlUsuarios  implements java.io.Serializable {
     
     public void setMmlDataNas(Date mmlDataNas) {
         this.mmlDataNas = mmlDataNas;
-    }
-
-    
-    @Column(name="mml_ativo", length=1)
-    public String getMmlAtivo() {
-        return this.mmlAtivo;
-    }
-    
-    public void setMmlAtivo(String mmlAtivo) {
-        this.mmlAtivo = mmlAtivo;
     }
 
 

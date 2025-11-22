@@ -4,18 +4,23 @@
  */
 package view;
 
+import bean.MmlCarros;
+import bean.MmlVendasCarros;
+import dao.MmlCarrosDao;
 import java.awt.Color;
+import java.util.List;
 import javax.swing.JOptionPane;
+import tools.Util;
 
 /**
  *
  * @author Marlon
  */
 public class MmljDlgVendasCarros extends javax.swing.JDialog {
-
+        MmljDlgVendas mmljDlgVendas; 
        private boolean incluir;
     /**
-     * Creates new form MmljDlgVendasProdutos
+     * Creates new form MmljDlgVendasMmlCarros
      */
     public MmljDlgVendasCarros(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -23,25 +28,21 @@ public class MmljDlgVendasCarros extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         setTitle("Cadastro de Vendas de Carros");
         getContentPane().setBackground(Color.WHITE);
-        habilitar(false);
+       Util.habilitar(false, Mml_jTxtValorUnitario, Mml_jTxtTotal);
+        Mml_jTxtQuantidade.setText("1");
+        MmlCarrosDao mmlCarrosDao = new MmlCarrosDao();
+        List lista = (List) mmlCarrosDao.listAll();
+        for (Object object : lista) {
+            Mml_jCboCarros.addItem((MmlCarros) object);
+        }
+    
     }
     
-        public void habilitar(boolean value) {
-        mml_jTxtIdVendasCarros.setEnabled(value);
-        mml_jTxtIdVendas.setEnabled(value);
-        mml_jTxtIdCarros.setEnabled(value);
-        mml_jTxtTipo.setEnabled(value);
-        mml_jTxtValorUnitario.setEnabled(value);
-
-      
+        
+        public void setTelaAnterior(MmljDlgVendas mmljDlgVendas){
+        this.mmljDlgVendas = mmljDlgVendas;
+    
     }
-        public void limpar() {
-        mml_jTxtIdVendasCarros.setText("");
-        mml_jTxtIdVendas.setText("");
-        mml_jTxtIdCarros.setText("");
-        mml_jTxtTipo.setText("");
-        mml_jTxtValorUnitario.setText("");
-}
 
 
     /**
@@ -53,60 +54,18 @@ public class MmljDlgVendasCarros extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        mml_jTxtIdCarros = new javax.swing.JTextField();
-        mml_jLblValorUnitario = new javax.swing.JLabel();
-        mml_jLblIdVendasCarros = new javax.swing.JLabel();
-        mml_jTxtValorUnitario = new javax.swing.JTextField();
-        mml_jTxtIdVendasCarros = new javax.swing.JTextField();
-        mml_jLblIdVenda = new javax.swing.JLabel();
-        mml_jTxtIdVendas = new javax.swing.JTextField();
-        mml_jLblTipo = new javax.swing.JLabel();
-        mml_jLblIdCarros = new javax.swing.JLabel();
-        mml_jTxtTipo = new javax.swing.JTextField();
         jBtnOK = new javax.swing.JToggleButton();
         jBtnCancelar = new javax.swing.JToggleButton();
+        jLabel1 = new javax.swing.JLabel();
+        Mml_jCboCarros = new javax.swing.JComboBox<MmlCarros>();
+        jLabel2 = new javax.swing.JLabel();
+        Mml_jTxtQuantidade = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        Mml_jTxtValorUnitario = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        Mml_jTxtTotal = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        mml_jTxtIdCarros.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mml_jTxtIdCarrosActionPerformed(evt);
-            }
-        });
-
-        mml_jLblValorUnitario.setText("Valor Unitario");
-
-        mml_jLblIdVendasCarros.setText("Id Vendas_Carros");
-
-        mml_jTxtValorUnitario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mml_jTxtValorUnitarioActionPerformed(evt);
-            }
-        });
-
-        mml_jTxtIdVendasCarros.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mml_jTxtIdVendasCarrosActionPerformed(evt);
-            }
-        });
-
-        mml_jLblIdVenda.setText("Id Venda");
-
-        mml_jTxtIdVendas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mml_jTxtIdVendasActionPerformed(evt);
-            }
-        });
-
-        mml_jLblTipo.setText("Tipo");
-
-        mml_jLblIdCarros.setText("Id Carros");
-
-        mml_jTxtTipo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mml_jTxtTipoActionPerformed(evt);
-            }
-        });
 
         jBtnOK.setText("OK");
         jBtnOK.addActionListener(new java.awt.event.ActionListener() {
@@ -122,40 +81,55 @@ public class MmljDlgVendasCarros extends javax.swing.JDialog {
             }
         });
 
+        jLabel1.setText("Carros");
+
+        Mml_jCboCarros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Mml_jCboCarrosActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Quantidade");
+
+        Mml_jTxtQuantidade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Mml_jTxtQuantidadeKeyReleased(evt);
+            }
+        });
+
+        jLabel3.setText("Valor Unitário");
+
+        jLabel4.setText("Total");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(mml_jTxtTipo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
-                        .addComponent(mml_jTxtIdVendasCarros, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(mml_jLblIdVendasCarros, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(mml_jLblTipo))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Mml_jCboCarros, 0, 383, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(mml_jTxtIdVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(mml_jLblIdVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(mml_jLblIdCarros, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(mml_jTxtIdCarros, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(mml_jLblValorUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(mml_jTxtValorUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jBtnOK, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jBtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel2)
+                                    .addComponent(Mml_jTxtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel3)
+                                    .addComponent(Mml_jTxtValorUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(Mml_jTxtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(237, 237, 237)
-                .addComponent(jBtnOK, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(255, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,59 +137,41 @@ public class MmljDlgVendasCarros extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(mml_jLblIdCarros)
+                        .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(mml_jTxtIdCarros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Mml_jTxtValorUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(mml_jLblIdVenda)
+                        .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(mml_jTxtIdVendas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(mml_jLblIdVendasCarros)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(mml_jTxtIdVendasCarros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(mml_jLblTipo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(mml_jTxtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(mml_jLblValorUnitario)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(mml_jTxtValorUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                        .addComponent(Mml_jCboCarros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Mml_jTxtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Mml_jTxtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jBtnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jBtnOK, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21))
+                .addGap(25, 25, 25))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void mml_jTxtIdCarrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jTxtIdCarrosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mml_jTxtIdCarrosActionPerformed
-
-    private void mml_jTxtValorUnitarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jTxtValorUnitarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mml_jTxtValorUnitarioActionPerformed
-
-    private void mml_jTxtIdVendasCarrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jTxtIdVendasCarrosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mml_jTxtIdVendasCarrosActionPerformed
-
-    private void mml_jTxtIdVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jTxtIdVendasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mml_jTxtIdVendasActionPerformed
-
-    private void mml_jTxtTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jTxtTipoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mml_jTxtTipoActionPerformed
-
     private void jBtnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOKActionPerformed
         // TODO add your handling code here:
+        MmlVendasCarros mmlVendasCarros = new MmlVendasCarros();
+        mmlVendasCarros.setMmlCarros((MmlCarros) Mml_jCboCarros.getSelectedItem());
+        mmlVendasCarros.setMmlQuantidade(Util.strToInt(Mml_jTxtQuantidade.getText()));
+        mmlVendasCarros.setMmlValorUnitario(Util.strToDouble(Mml_jTxtValorUnitario.getText()));
+        mmljDlgVendas.mm_Controller_Vendas_Carros.addBean(mmlVendasCarros);
         setVisible(false);
     }//GEN-LAST:event_jBtnOKActionPerformed
 
@@ -223,6 +179,25 @@ public class MmljDlgVendasCarros extends javax.swing.JDialog {
         // TODO add your handling code here:
         setVisible(false);
     }//GEN-LAST:event_jBtnCancelarActionPerformed
+
+    private void Mml_jCboCarrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Mml_jCboCarrosActionPerformed
+        // TODO add your handling code here:
+        MmlCarros carros = (MmlCarros) Mml_jCboCarros.getSelectedItem();
+        Mml_jTxtValorUnitario.setText(Util.doubleToStr(carros.getMmlPrecoVenda()));
+        int quant = Util.strToInt(Mml_jTxtQuantidade.getText());
+        Mml_jTxtTotal.setText(Util.doubleToStr(quant*carros.getMmlPrecoVenda()));
+    }//GEN-LAST:event_Mml_jCboCarrosActionPerformed
+
+    private void Mml_jTxtQuantidadeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Mml_jTxtQuantidadeKeyReleased
+        // TODO add your handling code here:
+        if (Mml_jTxtQuantidade.getText().isEmpty()){
+            Mml_jTxtTotal.setText("");
+        } else {
+            MmlCarros carros = (MmlCarros) Mml_jCboCarros.getSelectedItem();
+            int quant = Util.strToInt(Mml_jTxtQuantidade.getText());
+            Mml_jTxtTotal.setText(Util.doubleToStr(quant*carros.getMmlPrecoVenda()));
+        }
+    }//GEN-LAST:event_Mml_jTxtQuantidadeKeyReleased
 
     /**
      * @param args the command line arguments
@@ -270,17 +245,15 @@ public class MmljDlgVendasCarros extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<MmlCarros> Mml_jCboCarros;
+    private javax.swing.JTextField Mml_jTxtQuantidade;
+    private javax.swing.JTextField Mml_jTxtTotal;
+    private javax.swing.JTextField Mml_jTxtValorUnitario;
     private javax.swing.JToggleButton jBtnCancelar;
     private javax.swing.JToggleButton jBtnOK;
-    private javax.swing.JLabel mml_jLblIdCarros;
-    private javax.swing.JLabel mml_jLblIdVenda;
-    private javax.swing.JLabel mml_jLblIdVendasCarros;
-    private javax.swing.JLabel mml_jLblTipo;
-    private javax.swing.JLabel mml_jLblValorUnitario;
-    private javax.swing.JTextField mml_jTxtIdCarros;
-    private javax.swing.JTextField mml_jTxtIdVendas;
-    private javax.swing.JTextField mml_jTxtIdVendasCarros;
-    private javax.swing.JTextField mml_jTxtTipo;
-    private javax.swing.JTextField mml_jTxtValorUnitario;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }

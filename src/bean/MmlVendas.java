@@ -1,5 +1,5 @@
 package bean;
-// Generated 10/10/2025 16:46:28 by Hibernate Tools 4.3.1
+// Generated 21/11/2025 20:16:56 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -33,26 +33,31 @@ public class MmlVendas  implements java.io.Serializable {
      private MmlVendedor mmlVendedor;
      private Date mmlData;
      private double mmlValor;
-     private String mmlFormaPagamento;
+     private String mmlQuantidade;
      
 
     public MmlVendas() {
     }
 
 	
-    public MmlVendas(MmlCliente mmlCliente, MmlVendedor mmlVendedor) {
+    public MmlVendas(MmlCliente mmlCliente) {
         this.mmlCliente = mmlCliente;
+    }
+    
+    public MmlVendas(MmlVendedor mmlVendedor) {
         this.mmlVendedor = mmlVendedor;
     }
-    public MmlVendas(MmlCliente mmlCliente, MmlVendedor mmlVendedor, Date mmlData, double mmlValor, String mmlFormaPagamento, Set mmlVendasCarroses) {
+    
+    public MmlVendas(MmlCliente mmlCliente, Date mmlData, double mmlValor, String mmlQuantidade) {
        this.mmlCliente = mmlCliente;
        this.mmlVendedor = mmlVendedor;
        this.mmlData = mmlData;
        this.mmlValor = mmlValor;
-       this.mmlFormaPagamento = mmlFormaPagamento;
+       this.mmlQuantidade = mmlQuantidade;
+       
     }
    
-     @Id @GeneratedValue(strategy=IDENTITY)
+     @Id 
 
     
     @Column(name="mml_idVendas", unique=true, nullable=false)
@@ -73,9 +78,9 @@ public class MmlVendas  implements java.io.Serializable {
     public void setMmlCliente(MmlCliente mmlCliente) {
         this.mmlCliente = mmlCliente;
     }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="mml_vendedor", nullable=false)
+    
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="mml_idVendedor", nullable=false)
     public MmlVendedor getMmlVendedor() {
         return this.mmlVendedor;
     }
@@ -105,14 +110,17 @@ public class MmlVendas  implements java.io.Serializable {
     }
 
     
-    @Column(name="mml_forma_pagamento", length=10)
-    public String getMmlFormaPagamento() {
-        return this.mmlFormaPagamento;
+    @Column(name="mml_quantidade", length=10)
+    public String getMmlQuantidade() {
+        return this.mmlQuantidade;
     }
     
-    public void setMmlFormaPagamento(String mmlFormaPagamento) {
-        this.mmlFormaPagamento = mmlFormaPagamento;
+    public void setMmlQuantidade(String mmlQuantidade) {
+        this.mmlQuantidade = mmlQuantidade;
     }
+
+
+
 
 
 }

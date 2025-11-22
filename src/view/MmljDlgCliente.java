@@ -24,6 +24,9 @@ public class MmljDlgCliente extends javax.swing.JDialog {
         initComponents();
         setTitle("Cadastro de Clientes");
         setLocationRelativeTo(null);
+        Util.habilitar(false, jTxtCodigo,JTxtNome,jTxtCpf, JTxtRg,jTxtSexo,jTxtDataNasc, jTxtGmail, jTxtcep, jTxtEnderoco, jTxtBairro, jTxtCidade, jTxtTelefone,  jTxtCelular, jTxtDataCad, jBtnConfirmar, jBtnCancelar);
+        Util.habilitar(true,  jBtnIncluir, jbtnPesquisar);
+
     }
           
     

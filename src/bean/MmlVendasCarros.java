@@ -1,5 +1,5 @@
 package bean;
-// Generated 10/10/2025 16:46:28 by Hibernate Tools 4.3.1
+// Generated 21/11/2025 20:16:56 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -38,7 +38,7 @@ public class MmlVendasCarros  implements java.io.Serializable {
        this.mmlValorUnitario = mmlValorUnitario;
     }
    
-     @Id @GeneratedValue(strategy=IDENTITY)
+     @Id 
 
     
     @Column(name="mml_idVendas_carros", unique=true, nullable=false)
@@ -71,7 +71,7 @@ public class MmlVendasCarros  implements java.io.Serializable {
     }
 
     
-    @Column(name="mml_quantidade")
+    @Column(name="mml_quantidade", length=20)
     public int getMmlQuantidade() {
         return this.mmlQuantidade;
     }
