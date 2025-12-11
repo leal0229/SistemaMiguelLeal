@@ -50,6 +50,34 @@ public class MmlClienteDao extends DaoAbstract {
         session.getTransaction().commit();
         return lista;
     }
+    
+    public Object listNome(String nome) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(MmlCliente.class);
+        criteria.add(Restrictions.like("mmlNome", "%" + nome + "%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+    }
+        
+    public Object listRG(String valor) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(MmlCliente.class);
+        criteria.add(Restrictions.ge("mmlRg", valor));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+    }
+    
+    public Object listNomrRG(String nome, String valor) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(MmlCliente.class);
+        criteria.add(Restrictions.like("mmlNome", "%" + nome + "%"));
+        criteria.add(Restrictions.ge("mmlRg", valor));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+    }
 
     @Override
     public Object listAll() {

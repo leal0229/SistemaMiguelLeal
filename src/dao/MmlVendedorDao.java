@@ -6,6 +6,7 @@
 package dao;
 
 import bean.MmlVendedor;
+import bean.MmlVendedor;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
@@ -50,7 +51,33 @@ public class MmlVendedorDao extends DaoAbstract {
         session.getTransaction().commit();
         return lista;
     }
-
+public Object listNome(String nome) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(MmlVendedor.class);
+        criteria.add(Restrictions.like("mmlNome", "%" + nome + "%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+    }
+        
+    public Object listExpediente(String valor) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(MmlVendedor.class);
+        criteria.add(Restrictions.ge("mmlExpediente", valor));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+    }
+    
+    public Object listNomeExpediente(String nome, String valor) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(MmlVendedor.class);
+        criteria.add(Restrictions.like("mmlNome", "%" + nome + "%"));
+        criteria.add(Restrictions.ge("mmlExpediente", valor));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+    }
     @Override
     public Object listAll() {
         session.beginTransaction();

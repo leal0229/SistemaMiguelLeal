@@ -47,11 +47,40 @@ public class MmlCarrosDao extends DaoAbstract{
     public Object list(int codigo) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(MmlCarros.class);
-        criteria.add(Restrictions.eq("idprodutos", codigo));
+        criteria.add(Restrictions.eq("mml_idCarros", codigo));
         List lista = criteria.list();
         session.getTransaction().commit();
         return lista;
     }
+    
+    public Object listModelo(String nome) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(MmlCarros.class);
+        criteria.add(Restrictions.like("mmlModelo", "%" + nome + "%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+    }
+        
+    public Object listPreco(double valor) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(MmlCarros.class);
+        criteria.add(Restrictions.ge("mmlPreco", valor));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+    }
+    
+    public Object listModeloPreco(String nome, double valor) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(MmlCarros.class);
+        criteria.add(Restrictions.like("mmlModelo", "%" + nome + "%"));
+        criteria.add(Restrictions.ge("mmlPreco", valor));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+    }
+
 
     @Override
     public Object listAll() {

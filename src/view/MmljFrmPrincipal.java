@@ -31,28 +31,83 @@ public class MmljFrmPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jToolBar1 = new javax.swing.JToolBar();
+        mml_jBtnFClientes = new javax.swing.JButton();
+        mml_jBtnCarros = new javax.swing.JButton();
+        mml_jBtnUsuarios = new javax.swing.JButton();
+        mml_jBtnVendedor = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        mml_jMnuClientes = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMnuVendedor = new javax.swing.JMenuItem();
+        mml_jMnuUsuarios = new javax.swing.JMenuItem();
+        mml_jMnuCarros = new javax.swing.JMenuItem();
+        mml_jMnuVendedor = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        mmljMnuConsultcarros = new javax.swing.JMenuItem();
+        mmljMnuConsultClientes = new javax.swing.JMenuItem();
+        mmljMnuConsultUsuario = new javax.swing.JMenuItem();
+        mmljMnuConsulVendedor = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jMenu1.setText("Cadastros");
-        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+        jToolBar1.setRollover(true);
+
+        mml_jBtnFClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/clientes.png"))); // NOI18N
+        mml_jBtnFClientes.setFocusable(false);
+        mml_jBtnFClientes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        mml_jBtnFClientes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        mml_jBtnFClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu1ActionPerformed(evt);
+                mml_jBtnFClientesActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(mml_jBtnFClientes);
+
+        mml_jBtnCarros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carro.png"))); // NOI18N
+        mml_jBtnCarros.setFocusable(false);
+        mml_jBtnCarros.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        mml_jBtnCarros.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        mml_jBtnCarros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mml_jBtnCarrosActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(mml_jBtnCarros);
+
+        mml_jBtnUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/usuaruios.png"))); // NOI18N
+        mml_jBtnUsuarios.setFocusable(false);
+        mml_jBtnUsuarios.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        mml_jBtnUsuarios.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        mml_jBtnUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mml_jBtnUsuariosActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(mml_jBtnUsuarios);
+
+        mml_jBtnVendedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/vendedorr.png"))); // NOI18N
+        mml_jBtnVendedor.setFocusable(false);
+        mml_jBtnVendedor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        mml_jBtnVendedor.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        mml_jBtnVendedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mml_jBtnVendedorActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(mml_jBtnVendedor);
+
+        mml_jMnuClientes.setText("Cadastros");
+        mml_jMnuClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mml_jMnuClientesActionPerformed(evt);
             }
         });
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/clientes.png"))); // NOI18N
         jMenuItem1.setText("Cliente");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -60,40 +115,40 @@ public class MmljFrmPrincipal extends javax.swing.JFrame {
                 jMenuItem1ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        mml_jMnuClientes.add(jMenuItem1);
 
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/usuaruios.png"))); // NOI18N
-        jMenuItem2.setText("Usuários");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        mml_jMnuUsuarios.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_MASK));
+        mml_jMnuUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/usuaruios.png"))); // NOI18N
+        mml_jMnuUsuarios.setText("Usuários");
+        mml_jMnuUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                mml_jMnuUsuariosActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        mml_jMnuClientes.add(mml_jMnuUsuarios);
 
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carro.png"))); // NOI18N
-        jMenuItem3.setText("Carros");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        mml_jMnuCarros.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
+        mml_jMnuCarros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carro.png"))); // NOI18N
+        mml_jMnuCarros.setText("Carros");
+        mml_jMnuCarros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                mml_jMnuCarrosActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem3);
+        mml_jMnuClientes.add(mml_jMnuCarros);
 
-        jMnuVendedor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMnuVendedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/vendedorr.png"))); // NOI18N
-        jMnuVendedor.setText("Vendedor");
-        jMnuVendedor.addActionListener(new java.awt.event.ActionListener() {
+        mml_jMnuVendedor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_MASK));
+        mml_jMnuVendedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/vendedorr.png"))); // NOI18N
+        mml_jMnuVendedor.setText("Vendedor");
+        mml_jMnuVendedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMnuVendedorActionPerformed(evt);
+                mml_jMnuVendedorActionPerformed(evt);
             }
         });
-        jMenu1.add(jMnuVendedor);
-        jMenu1.add(jSeparator1);
+        mml_jMnuClientes.add(mml_jMnuVendedor);
+        mml_jMnuClientes.add(jSeparator1);
 
-        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/sair.png"))); // NOI18N
         jMenuItem4.setText("Sair");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
@@ -101,13 +156,13 @@ public class MmljFrmPrincipal extends javax.swing.JFrame {
                 jMenuItem4ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem4);
+        mml_jMnuClientes.add(jMenuItem4);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(mml_jMnuClientes);
 
         jMenu2.setText("Movimento");
 
-        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carro.png"))); // NOI18N
         jMenuItem5.setText("Vendas");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
@@ -117,17 +172,51 @@ public class MmljFrmPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem5);
 
-        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/vendascarros.png"))); // NOI18N
-        jMenuItem6.setText("Vendas_Carros");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        jMenuBar1.add(jMenu2);
+
+        jMenu1.setText("Consultas");
+
+        mmljMnuConsultcarros.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        mmljMnuConsultcarros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carro.png"))); // NOI18N
+        mmljMnuConsultcarros.setText("Carros");
+        mmljMnuConsultcarros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+                mmljMnuConsultcarrosActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem6);
+        jMenu1.add(mmljMnuConsultcarros);
 
-        jMenuBar1.add(jMenu2);
+        mmljMnuConsultClientes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        mmljMnuConsultClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/clientes.png"))); // NOI18N
+        mmljMnuConsultClientes.setText("Clientes");
+        mmljMnuConsultClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mmljMnuConsultClientesActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mmljMnuConsultClientes);
+
+        mmljMnuConsultUsuario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        mmljMnuConsultUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/usuaruios.png"))); // NOI18N
+        mmljMnuConsultUsuario.setText("Usuário");
+        mmljMnuConsultUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mmljMnuConsultUsuarioActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mmljMnuConsultUsuario);
+
+        mmljMnuConsulVendedor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        mmljMnuConsulVendedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/vendedorr.png"))); // NOI18N
+        mmljMnuConsulVendedor.setText("Vendedor");
+        mmljMnuConsulVendedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mmljMnuConsulVendedorActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mmljMnuConsulVendedor);
+
+        jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
 
@@ -135,11 +224,13 @@ public class MmljFrmPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 277, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 224, Short.MAX_VALUE))
         );
 
         pack();
@@ -152,38 +243,38 @@ public class MmljFrmPrincipal extends javax.swing.JFrame {
         dlg.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void mml_jMnuCarrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jMnuCarrosActionPerformed
         // TODO add your handling code here:
         MmljDlgCarros dlg = new MmljDlgCarros(this, true); 
         dlg.setLocationRelativeTo(this); 
         dlg.setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_mml_jMnuCarrosActionPerformed
 
-    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+    private void mml_jMnuClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jMnuClientesActionPerformed
         // TODO add your handling code here:
         MmljDlgCarros dlg = new MmljDlgCarros(this, true); 
         dlg.setLocationRelativeTo(this); 
         dlg.setVisible(true);
-    }//GEN-LAST:event_jMenu1ActionPerformed
+    }//GEN-LAST:event_mml_jMnuClientesActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void mml_jMnuUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jMnuUsuariosActionPerformed
         // TODO add your handling code here:
         MmljDlgUsuario dlg = new MmljDlgUsuario(this, true); 
         dlg.setLocationRelativeTo(this); 
         dlg.setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_mml_jMnuUsuariosActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
-    private void jMnuVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuVendedorActionPerformed
+    private void mml_jMnuVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jMnuVendedorActionPerformed
         // TODO add your handling code here:
         MmljDlgVendedor dlg = new MmljDlgVendedor(this, true); 
         dlg.setLocationRelativeTo(this); 
         dlg.setVisible(true);
-    }//GEN-LAST:event_jMnuVendedorActionPerformed
+    }//GEN-LAST:event_mml_jMnuVendedorActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
@@ -192,12 +283,49 @@ public class MmljFrmPrincipal extends javax.swing.JFrame {
         dlg.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+    private void mml_jBtnFClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jBtnFClientesActionPerformed
         // TODO add your handling code here:
-        MmljDlgVendasCarros dlg = new MmljDlgVendasCarros(this, true); 
-        dlg.setLocationRelativeTo(this); 
-        dlg.setVisible(true);
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+        jMenuItem1ActionPerformed(null);
+    }//GEN-LAST:event_mml_jBtnFClientesActionPerformed
+
+    private void mml_jBtnCarrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jBtnCarrosActionPerformed
+        // TODO add your handling code here:
+        mml_jMnuCarrosActionPerformed(null);
+    }//GEN-LAST:event_mml_jBtnCarrosActionPerformed
+
+    private void mml_jBtnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jBtnUsuariosActionPerformed
+        // TODO add your handling code here:
+        mml_jMnuUsuariosActionPerformed(null);
+    }//GEN-LAST:event_mml_jBtnUsuariosActionPerformed
+
+    private void mml_jBtnVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jBtnVendedorActionPerformed
+        // TODO add your handling code here:
+        mml_jMnuVendedorActionPerformed(null);
+    }//GEN-LAST:event_mml_jBtnVendedorActionPerformed
+
+    private void mmljMnuConsultcarrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mmljMnuConsultcarrosActionPerformed
+        // TODO add your handling code here:
+        JDlgConsultaCarros jDlgConsultaCarros = new JDlgConsultaCarros(null, true);
+        jDlgConsultaCarros.setVisible(true);
+    }//GEN-LAST:event_mmljMnuConsultcarrosActionPerformed
+
+    private void mmljMnuConsultClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mmljMnuConsultClientesActionPerformed
+        // TODO add your handling code here:
+        JDlgConsultaClientes jDlgConsultaClientes = new JDlgConsultaClientes(null, true);
+        jDlgConsultaClientes.setVisible(true);
+    }//GEN-LAST:event_mmljMnuConsultClientesActionPerformed
+
+    private void mmljMnuConsultUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mmljMnuConsultUsuarioActionPerformed
+        // TODO add your handling code here:
+        JDlgConsultausuarios jDlgConsultausuarios = new JDlgConsultausuarios(null, true);
+        jDlgConsultausuarios.setVisible(true);
+    }//GEN-LAST:event_mmljMnuConsultUsuarioActionPerformed
+
+    private void mmljMnuConsulVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mmljMnuConsulVendedorActionPerformed
+        // TODO add your handling code here:
+        JDlgConsultaVendedor jDlgConsultaVendedor = new JDlgConsultaVendedor(null, true);
+        jDlgConsultaVendedor.setVisible(true);
+    }//GEN-LAST:event_mmljMnuConsulVendedorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -242,12 +370,21 @@ public class MmljFrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMnuVendedor;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JButton mml_jBtnCarros;
+    private javax.swing.JButton mml_jBtnFClientes;
+    private javax.swing.JButton mml_jBtnUsuarios;
+    private javax.swing.JButton mml_jBtnVendedor;
+    private javax.swing.JMenuItem mml_jMnuCarros;
+    private javax.swing.JMenu mml_jMnuClientes;
+    private javax.swing.JMenuItem mml_jMnuUsuarios;
+    private javax.swing.JMenuItem mml_jMnuVendedor;
+    private javax.swing.JMenuItem mmljMnuConsulVendedor;
+    private javax.swing.JMenuItem mmljMnuConsultClientes;
+    private javax.swing.JMenuItem mmljMnuConsultUsuario;
+    private javax.swing.JMenuItem mmljMnuConsultcarros;
     // End of variables declaration//GEN-END:variables
 }
