@@ -130,7 +130,7 @@ public class MmljDlgCliente extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        mml_JLblNome.setText("Nome");
+        mml_JLblNome.setText("Apelido");
 
         JTxtNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -294,11 +294,11 @@ public class MmljDlgCliente extends javax.swing.JDialog {
                         .addComponent(jTxtBairro, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jTxtGmail)
                         .addComponent(jTxtDataNasc)
-                        .addComponent(mml_JLblNome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(JTxtNome)
                         .addComponent(jLblEnderoco, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jTxtEnderoco, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLblDataNasc, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLblDataNasc, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(mml_JLblNome, javax.swing.GroupLayout.Alignment.LEADING)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(JTxtRg)
@@ -446,7 +446,7 @@ public class MmljDlgCliente extends javax.swing.JDialog {
         // TODO add your handling code here:
         incluir = true;
         Util.habilitar(true, jTxtCodigo,JTxtNome,jTxtCpf, JTxtRg,jTxtSexo,jTxtDataNasc, jTxtGmail, jTxtcep, jTxtEnderoco, jTxtBairro, jTxtCidade, jTxtTelefone,  jTxtCelular, jTxtDataCad, jBtnConfirmar, jBtnCancelar);
-        Util.habilitar(false, jBtnIncluir, jbtnPesquisar);
+        Util.habilitar(false, jBtnIncluir, jbtnPesquisar,jBtnExcluir,jBtnAlterar);
         Util.limpar(jTxtCodigo,JTxtNome,jTxtCpf, JTxtRg,jTxtSexo,jTxtDataNasc, jTxtGmail, jTxtcep, jTxtEnderoco, jTxtBairro, jTxtCidade, jTxtTelefone,  jTxtCelular, jTxtDataCad
 );
         jTxtCodigo.grabFocus();

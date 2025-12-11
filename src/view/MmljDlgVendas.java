@@ -7,15 +7,18 @@ package view;
 
 import bean.MmlCliente;
 import bean.MmlVendas;
+import bean.MmlVendasCarros;
 import bean.MmlVendedor;
 import dao.MmlClienteDao;
 import dao.MmlUsuariosDao;
+import dao.MmlVendasCarrosDao;
 import dao.MmlVendasDao;
 import dao.MmlVendedorDao;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import tools.Util;
 
 
@@ -33,25 +36,26 @@ public class MmljDlgVendas extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        setTitle("Cadastro de Vendedor");
-        Util.habilitar(false, mml_jTxtIdVendas, mml_jcboClientes, mml_jTxtValor, mml_jTxtData, mml_jcboVendedor, mml_jBtnIncluir, mml_jBtnCancelar, mml_jBtnIncluirProd, mml_jBtnAlterarProd, mml_jBtnExcluirProd);
-        Util.habilitar(true, mml_jBtnIncluir, mml_jBtnAlterar, mml_jBtnExcluir, mml_jBtnPesquisar);
-
+        Util.habilitar(true, mml_jTxtIdVendas, mml_jTxtData, mml_jcboClientes, mml_jcboVendedor,  mml_jBtnIncluir, mml_jBtnCancelar, mml_jBtnConfirmar, mml_jBtnCancelar,  mml_jBtnConfirmar, mml_jBtnCancelar, jTable1);
         MmlClienteDao clientesDAO = new MmlClienteDao();
         List lista = (List) clientesDAO.listAll();
-            for(int i = 0; i < lista.size(); i++){
-            mml_jcboClientes.addItem((MmlCliente)lista.get(i));
-        }
+        for (int i = 0; i < lista.size(); i++) {
+            mml_jcboClientes.addItem((MmlCliente) lista.get(i));
 
-        MmlVendedorDao vendedorDAO = new MmlVendedorDao();
-        List listaVend = (List) vendedorDAO.listAll();
+        }
+        MmlVendedorDao mmlVendedorDao = new MmlVendedorDao();
+        List listaVend = (List) mmlVendedorDao.listAll();
         for (Object object : listaVend) {
             mml_jcboVendedor.addItem((MmlVendedor) object);
         }
-            
         mm_Controller_Vendas_Carros = new Mm_Controller_Vendas_Carros();
         mm_Controller_Vendas_Carros.setList(new ArrayList());
         jTable1.setModel(mm_Controller_Vendas_Carros);
+        Util.habilitar(false, mml_jTxtIdVendas, mml_jTxtData, mml_jcboClientes,
+                mml_jcboVendedor, mml_jTxtValor,
+                mml_jBtnIncluir, mml_jBtnPesquisar, mml_jBtnCancelar,
+                mml_jBtnIncluir, mml_jBtnAlterar, mml_jBtnExcluir);
+        Util.habilitar(true, mml_jBtnIncluir,  mml_jBtnAlterar, mml_jBtnCancelar, mml_jBtnPesquisar);
     }
   public MmlVendas viewBean() {
         MmlVendas vendas = new MmlVendas();
@@ -82,6 +86,10 @@ public class MmljDlgVendas extends javax.swing.JDialog {
         }
         mml_jTxtValor.setText(String.valueOf(total));
     }
+    public JTable getjTable1() {
+        return jTable1;
+    }
+
    
     /**
      * This method is called from within the constructor to initialize the form.
@@ -166,7 +174,7 @@ public class MmljDlgVendas extends javax.swing.JDialog {
             }
         });
 
-        mml_jLblValor.setText("Valor");
+        mml_jLblValor.setText("total");
 
         mml_jBtnIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/incluir.png"))); // NOI18N
         mml_jBtnIncluir.setText("Incluir");
@@ -347,15 +355,24 @@ public class MmljDlgVendas extends javax.swing.JDialog {
 
     private void mml_jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jBtnConfirmarActionPerformed
         // TODO add your handling code here:
-       MmlVendasDao vendasDAO = new MmlVendasDao();
-        if (incluir == true) {
-            vendasDAO.insert(viewBean());
+        MmlVendasDao mmlVendasDao = new MmlVendasDao();
+        MmlVendasCarrosDao mmlVendasCarrosDao = new MmlVendasCarrosDao();
+        MmlVendas vendas = viewBean();
+        if (incluir == true){
+            mmlVendasDao.insert(vendas);
+            for (int ind = 0; ind < jTable1.getRowCount(); ind++){
+                MmlVendasCarros mmlVendasCarros = (MmlVendasCarros) mm_Controller_Vendas_Carros.getBean(ind);
+                mmlVendasCarros.setMmlVendas(vendas);
+                mmlVendasCarrosDao.insert(mmlVendasCarros);
+            }
         } else {
-            vendasDAO.update(viewBean());
+            mmlVendasDao.update(vendas);
+        
         }
         Util.habilitar(false,mml_jTxtIdVendas, mml_jTxtData, mml_jcboClientes, mml_jcboVendedor,  mml_jBtnIncluir, mml_jBtnCancelar, mml_jBtnConfirmar, mml_jBtnCancelar,  mml_jBtnConfirmar, mml_jBtnCancelar);
         Util.habilitar(true, mml_jBtnIncluir, mml_jBtnPesquisar);
         Util.limpar(mml_jTxtIdVendas, mml_jTxtValor, mml_jTxtData, mml_jcboClientes, mml_jcboVendedor,  mml_jBtnConfirmar, mml_jBtnCancelar);
+         mm_Controller_Vendas_Carros.setList(new ArrayList());
         // TODO add your handling code here:
         
         
@@ -422,8 +439,9 @@ public class MmljDlgVendas extends javax.swing.JDialog {
 
     private void mml_jBtnAlterarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jBtnAlterarProdActionPerformed
         // TODO add your handling code here:
-        MmljDlgVendasCarros mmljDlgVendasCarros = new MmljDlgVendasCarros(null, true);
-        mmljDlgVendasCarros.setVisible(true);
+       MmljDlgVendasCarros jDlgMmlVendasProdutos = new MmljDlgVendasCarros(null, true);
+        jDlgMmlVendasProdutos.setTelaAnterior(this);
+        jDlgMmlVendasProdutos.setVisible(true);
     }//GEN-LAST:event_mml_jBtnAlterarProdActionPerformed
 
     private void mml_jBtnExcluirProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jBtnExcluirProdActionPerformed

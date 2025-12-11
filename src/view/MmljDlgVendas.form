@@ -228,7 +228,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="mml_jLblValor">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Valor"/>
+        <Property name="text" type="java.lang.String" value="total"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="mml_jBtnIncluir">

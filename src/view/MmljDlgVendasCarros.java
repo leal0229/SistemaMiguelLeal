@@ -167,11 +167,27 @@ public class MmljDlgVendasCarros extends javax.swing.JDialog {
 
     private void jBtnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOKActionPerformed
         // TODO add your handling code here:
+//        MmlVendasCarros mmlVendasCarros = new MmlVendasCarros();
+//        mmlVendasCarros.setMmlCarros((MmlCarros) Mml_jCboCarros.getSelectedItem());
+//        mmlVendasCarros.setMmlQuantidade(Util.strToInt(Mml_jTxtQuantidade.getText()));
+//        mmlVendasCarros.setMmlValorUnitario(Util.strToDouble(Mml_jTxtValorUnitario.getText()));
+//        mmljDlgVendas.mm_Controller_Vendas_Carros.addBean(mmlVendasCarros);
+//        setVisible(false);
+
+
+
+
         MmlVendasCarros mmlVendasCarros = new MmlVendasCarros();
         mmlVendasCarros.setMmlCarros((MmlCarros) Mml_jCboCarros.getSelectedItem());
         mmlVendasCarros.setMmlQuantidade(Util.strToInt(Mml_jTxtQuantidade.getText()));
         mmlVendasCarros.setMmlValorUnitario(Util.strToDouble(Mml_jTxtValorUnitario.getText()));
         mmljDlgVendas.mm_Controller_Vendas_Carros.addBean(mmlVendasCarros);
+        if (incluir == true) {
+           mmljDlgVendas.mm_Controller_Vendas_Carros.addBean(mmlVendasCarros);
+        } else {
+            mmljDlgVendas.mm_Controller_Vendas_Carros.removeBean(mmljDlgVendas.getjTable1().getSelectedRow());
+            mmljDlgVendas.mm_Controller_Vendas_Carros.addBean(mmlVendasCarros);
+        }        
         setVisible(false);
     }//GEN-LAST:event_jBtnOKActionPerformed
 

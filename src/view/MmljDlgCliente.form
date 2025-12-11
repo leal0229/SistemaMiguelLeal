@@ -47,11 +47,11 @@
                       <Component id="jTxtBairro" alignment="0" max="32767" attributes="0"/>
                       <Component id="jTxtGmail" max="32767" attributes="0"/>
                       <Component id="jTxtDataNasc" max="32767" attributes="0"/>
-                      <Component id="mml_JLblNome" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
                       <Component id="JTxtNome" alignment="1" max="32767" attributes="0"/>
                       <Component id="jLblEnderoco" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
                       <Component id="jTxtEnderoco" alignment="1" min="-2" pref="155" max="-2" attributes="0"/>
                       <Component id="jLblDataNasc" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
+                      <Component id="mml_JLblNome" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -181,7 +181,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="mml_JLblNome">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nome"/>
+        <Property name="text" type="java.lang.String" value="Apelido"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="JTxtNome">

@@ -325,7 +325,7 @@ public void beanView(MmlUsuarios mmlUsuarios) {
         // TODO add your handling code here:
         incluir = true;
         Util.habilitar(true, mmljTxtNome,mmljTxtApelido,mmljFmtCpf, mmljPwdSenha,mmljCboNivel,mmljChbAtivo, mmljFmtDataNascimento, mmljTxtCodigo,  mmljBtnConfirmar, mmljBtnCancelar);
-        Util.habilitar(false, mmljBtnIncluir, mmljBtnPesquisar);
+        Util.habilitar(false, mmljBtnIncluir, mmljBtnPesquisar,mmljBtnAlterar,mmljBtnExcluir);
         Util.limpar( mmljTxtNome,mmljTxtApelido,mmljFmtCpf, mmljPwdSenha,mmljCboNivel,mmljChbAtivo, mmljFmtDataNascimento, mmljTxtCodigo);
         mmljTxtNome.grabFocus();
         

@@ -7,6 +7,7 @@ package view;
 
 import bean.MmlVendedor;
 import dao.MmlClienteDao;
+import dao.MmlVendedorDao;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
@@ -28,7 +29,7 @@ public class MmljDlgVendedor extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         setTitle("Cadastro de Vendedor");
         getContentPane().setBackground(Color.WHITE);
-        Util.habilitar(false, mml_jTxtCodigo, mml_jTxtNome, mml_jTxtExpediente,mml_jTxtDataNasc,mml_jCBocAtivo, mml_jTxtCpf,mml_jTxtCodigo,mml_jTxtCredencial);
+        Util.habilitar(false, mml_jTxtCodigo, mml_jTxtNome, mml_jTxtExpediente,mml_jTxtDataNasc,mml_jCBocAtivo, mml_jTxtCpf,mml_jTxtCodigo,mml_jTxtCredencial,mml_jBtnConfirmar, mml_jBtnCancelar);
         
     }
     public MmlVendedor viewBean() {
@@ -345,7 +346,7 @@ public void beanView(MmlVendedor mmlVendedor) {
         // TODO add your handling code here:
         incluir = true;
         Util.habilitar(true, mml_jTxtNome, mml_jTxtExpediente,mml_jTxtDataNasc,mml_jCBocAtivo, mml_jTxtCpf,mml_jTxtCodigo,mml_jTxtCredencial, mml_jBtnConfirmar, mml_jBtnCancelar);
-        Util.habilitar(false, mml_jBtnIncluir, mml_jBtnPesquisar);
+        Util.habilitar(false, mml_jBtnIncluir, mml_jBtnPesquisar,mml_jBtnExcluir,mml_jBtnAlterar);
         Util.limpar(mml_jTxtNome, mml_jTxtExpediente,mml_jTxtDataNasc,mml_jCBocAtivo, mml_jTxtCpf,mml_jTxtCodigo,mml_jTxtCredencial);
         mml_jTxtNome.grabFocus();
         
@@ -353,11 +354,11 @@ public void beanView(MmlVendedor mmlVendedor) {
 
     private void mml_jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jBtnConfirmarActionPerformed
         // TODO add your handling code here:
-         MmlClienteDao mmlClienteDao = new MmlClienteDao();
+         MmlVendedorDao mmlVendedorDao = new MmlVendedorDao();
         if (incluir) {
-            mmlClienteDao.insert(viewBean());
+            mmlVendedorDao.insert(viewBean());
         } else {
-            mmlClienteDao.update(viewBean());
+            mmlVendedorDao.update(viewBean());
         }
         Util.habilitar(false,mml_jTxtNome, mml_jTxtExpediente,mml_jTxtDataNasc,mml_jCBocAtivo, mml_jTxtCpf,mml_jTxtCodigo,mml_jTxtCredencial, mml_jBtnConfirmar, mml_jBtnCancelar);
         Util.habilitar(true,  mml_jBtnIncluir, mml_jBtnPesquisar);
