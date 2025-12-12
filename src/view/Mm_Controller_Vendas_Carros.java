@@ -19,10 +19,12 @@ public class Mm_Controller_Vendas_Carros extends AbstractTableModel {
 
     public void setList(List lstMmlVendasCarros) {
         this.lstMmlVendasCarros = lstMmlVendasCarros;
+        this.fireTableDataChanged();
     }
     
     public Object getBean(int rowIndex) {
         return (MmlVendasCarros) lstMmlVendasCarros.get(rowIndex);
+        
     }
     
     public void addBean (MmlVendasCarros vendasCarros){

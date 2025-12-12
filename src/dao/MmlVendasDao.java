@@ -50,6 +50,35 @@ public class MmlVendasDao extends DaoAbstract {
         session.getTransaction().commit();
         return lista;
     }
+    
+    public Object listIdVendas(int idVendas) {
+       session.beginTransaction();
+       Criteria criteria = session.createCriteria(MmlVendas.class);
+       criteria.add(Restrictions.eq("mmlIdVendas", idVendas)); 
+       List lista = criteria.list();
+       session.getTransaction().commit();
+       return lista;
+   }
+
+   public Object listValor(double valor) {
+       session.beginTransaction();
+       Criteria criteria = session.createCriteria(MmlVendas.class);
+       criteria.add(Restrictions.eq("mmlValor", valor)); 
+       List lista = criteria.list();
+       session.getTransaction().commit();
+       return lista;
+   }
+
+   public Object listIdVendasValor(int idVendas, double valor) {
+       session.beginTransaction();
+       Criteria criteria = session.createCriteria(MmlVendas.class);
+       criteria.add(Restrictions.eq("mmlIdVendas", idVendas));
+       criteria.add(Restrictions.eq("mmlValor", valor));
+       List lista = criteria.list();
+       session.getTransaction().commit();
+       return lista;
+   }
+   
 
     @Override
     public Object listAll() {

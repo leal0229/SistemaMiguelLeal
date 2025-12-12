@@ -39,8 +39,10 @@ public class MmljDlgVendasCarros extends javax.swing.JDialog {
     }
     
         
-        public void setTelaAnterior(MmljDlgVendas mmljDlgVendas){
+        public void setTelaAnterior(MmljDlgVendas mmljDlgVendas, boolean incluir){
         this.mmljDlgVendas = mmljDlgVendas;
+        this.incluir = incluir;
+        
     
     }
 
@@ -181,7 +183,7 @@ public class MmljDlgVendasCarros extends javax.swing.JDialog {
         mmlVendasCarros.setMmlCarros((MmlCarros) Mml_jCboCarros.getSelectedItem());
         mmlVendasCarros.setMmlQuantidade(Util.strToInt(Mml_jTxtQuantidade.getText()));
         mmlVendasCarros.setMmlValorUnitario(Util.strToDouble(Mml_jTxtValorUnitario.getText()));
-        mmljDlgVendas.mm_Controller_Vendas_Carros.addBean(mmlVendasCarros);
+        
         if (incluir == true) {
            mmljDlgVendas.mm_Controller_Vendas_Carros.addBean(mmlVendasCarros);
         } else {
