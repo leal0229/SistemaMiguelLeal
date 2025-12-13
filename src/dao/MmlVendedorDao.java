@@ -1,20 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dao;
 
-import bean.MmlVendedor;
 import bean.MmlVendedor;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 
-/**
- *
- * @author Marlon
- */
 public class MmlVendedorDao extends DaoAbstract {
 
     @Override
@@ -46,12 +36,13 @@ public class MmlVendedorDao extends DaoAbstract {
     public Object list(int codigo) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(MmlVendedor.class);
-        criteria.add(Restrictions.eq("", codigo));
+        criteria.add(Restrictions.eq("mmlCodigo", codigo));
         List lista = criteria.list();
         session.getTransaction().commit();
         return lista;
     }
-public Object listNome(String nome) {
+
+    public Object listNome(String nome) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(MmlVendedor.class);
         criteria.add(Restrictions.like("mmlNome", "%" + nome + "%"));
@@ -59,7 +50,7 @@ public Object listNome(String nome) {
         session.getTransaction().commit();
         return lista;
     }
-        
+
     public Object listExpediente(String valor) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(MmlVendedor.class);
@@ -78,6 +69,7 @@ public Object listNome(String nome) {
         session.getTransaction().commit();
         return lista;
     }
+
     @Override
     public Object listAll() {
         session.beginTransaction();

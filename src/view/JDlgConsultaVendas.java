@@ -5,8 +5,8 @@
 package view;
 
 import bean.MmlUsuarios;
-import dao.MmlVendedorDao;
 import dao.MmlUsuariosDao;
+import dao.MmlVendasDao;
 import java.util.List;
 import tools.Util;
 import view.MmljDlgUsuario;
@@ -15,24 +15,24 @@ import view.MmljDlgUsuario;
  *
  * @author Marcos
  */
-public class JDlgConsultaVendedor extends javax.swing.JDialog {
+public class JDlgConsultaVendas extends javax.swing.JDialog {
 
     /**
      * Creates new form JDlgUsuariosPesquisar
      */
-   Mml_controller_consultarVendedor mml_controller_consultarVendedor;
-    MmlVendedorDao mmlVendedorDao;
+   Mml_controller_consultarVendas mml_controller_consultarVendas;
+    MmlVendasDao mmlVendasDao;
 
-    public JDlgConsultaVendedor(java.awt.Frame parent, boolean modal) {
+    public JDlgConsultaVendas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Consulta vendas");
-        mml_controller_consultarVendedor = new Mml_controller_consultarVendedor();
-        mmlVendedorDao = new MmlVendedorDao();
-        List lista = (List) mmlVendedorDao.listAll();
-        mml_controller_consultarVendedor.setList(lista);
-        jTable1.setModel(mml_controller_consultarVendedor);
+        mml_controller_consultarVendas = new Mml_controller_consultarVendas();
+        mmlVendasDao = new MmlVendasDao();
+        List lista = (List) mmlVendasDao.listAll();
+        mml_controller_consultarVendas.setList(lista);
+        jTable1.setModel(mml_controller_consultarVendas);
     }
 
     /**
@@ -48,7 +48,7 @@ public class JDlgConsultaVendedor extends javax.swing.JDialog {
         jTable1 = new javax.swing.JTable();
         jBtnOk = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTxtNome = new javax.swing.JTextField();
+        jTxtIdVenda = new javax.swing.JTextField();
         jTxtValor = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jBtnConsulta = new javax.swing.JButton();
@@ -81,9 +81,9 @@ public class JDlgConsultaVendedor extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setText("Nome");
+        jLabel1.setText("Id");
 
-        jLabel2.setText("Valor Maior que ");
+        jLabel2.setText("Valor Total");
 
         jBtnConsulta.setText("Consultar");
         jBtnConsulta.addActionListener(new java.awt.event.ActionListener() {
@@ -110,7 +110,7 @@ public class JDlgConsultaVendedor extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(jTxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTxtIdVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -127,9 +127,9 @@ public class JDlgConsultaVendedor extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTxtIdVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -161,30 +161,36 @@ public class JDlgConsultaVendedor extends javax.swing.JDialog {
 
     private void jBtnConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConsultaActionPerformed
         // TODO add your handling code here:
-        if (!jTxtValor.getText().isEmpty() && !jTxtNome.getText().isEmpty()) {
-            String nome = jTxtNome.getText();
-            String valor = jTxtValor.getText();
-            
-            List listNomeExpediente = (List) mmlVendedorDao.listNomeExpediente(nome, valor);
-            mml_controller_consultarVendedor.setList(listNomeExpediente);
-            
-        } else if (!jTxtNome.getText().isEmpty()) {
-            String nome = jTxtNome.getText();
-            
-            List listaNome = (List) mmlVendedorDao.listNome(nome);
-            mml_controller_consultarVendedor.setList(listaNome);
-            
-        } else if (!jTxtValor.getText().isEmpty()){
-            String valor = jTxtValor.getText();
-            
-            List listaValor = (List) mmlVendedorDao.listExpediente(valor);
-            mml_controller_consultarVendedor.setList(listaValor);
-            
+        if (!jTxtValor.getText().isEmpty() && !jTxtIdVenda.getText().isEmpty()) {
+    
+            int idVendas = Util.strToInt(jTxtIdVenda.getText());
+            double valor = Util.strToDouble(jTxtValor.getText());
+
+            List listIdVendasValor = (List) mmlVendasDao.listIdVendasValor(idVendas, valor);
+            mml_controller_consultarVendas.setList(listIdVendasValor);
+
+        } else if (!jTxtIdVenda.getText().isEmpty()) {
+
+            int idVendas = Util.strToInt(jTxtIdVenda.getText());
+
+            List listIdVendas = (List) mmlVendasDao.listIdVendas(idVendas);
+            mml_controller_consultarVendas.setList(listIdVendas);
+
+        } else if (!jTxtValor.getText().isEmpty()) {
+
+            double valor = Util.strToDouble(jTxtValor.getText());
+
+            List listaValor = (List) mmlVendasDao.listValor(valor);
+            mml_controller_consultarVendas.setList(listaValor);
+
         } else {
-            
-            List lista = (List) mmlVendedorDao.listAll();
-            mml_controller_consultarVendedor.setList(lista);
-        }
+
+            List lista = (List) mmlVendasDao.listAll();
+            mml_controller_consultarVendas.setList(lista);
+}
+
+
+
         
     }//GEN-LAST:event_jBtnConsultaActionPerformed
 
@@ -205,14 +211,30 @@ public class JDlgConsultaVendedor extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JDlgConsultaVendedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgConsultaVendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JDlgConsultaVendedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgConsultaVendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JDlgConsultaVendedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgConsultaVendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JDlgConsultaVendedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgConsultaVendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -233,7 +255,7 @@ public class JDlgConsultaVendedor extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JDlgConsultaVendedor dialog = new JDlgConsultaVendedor(new javax.swing.JFrame(), true);
+                JDlgConsultaVendas dialog = new JDlgConsultaVendas(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -253,7 +275,7 @@ public class JDlgConsultaVendedor extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTxtNome;
+    private javax.swing.JTextField jTxtIdVenda;
     private javax.swing.JTextField jTxtValor;
     // End of variables declaration//GEN-END:variables
 }

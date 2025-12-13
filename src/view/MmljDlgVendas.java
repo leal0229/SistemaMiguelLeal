@@ -73,6 +73,9 @@ public class MmljDlgVendas extends javax.swing.JDialog {
         mml_jTxtIdVendas.setText(Util.intToStr(vendas.getMmlIdVendas()));
         mml_jTxtValor.setText(Util.doubleToStr(vendas.getMmlValor()));
         mml_jTxtData.setText(Util.dateToStr(vendas.getMmlData()));
+        MmlVendasCarrosDao mmlVendasCarrosDao = new MmlVendasCarrosDao();
+        List lista = (List) mmlVendasCarrosDao.listProdutos(vendas);
+        mm_Controller_Vendas_Carros.setList(lista);
     }
 
     
@@ -409,7 +412,7 @@ public class MmljDlgVendas extends javax.swing.JDialog {
     private void mml_jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jBtnIncluirActionPerformed
         // TODO add your handling code here:
         Util.habilitar(true, mml_jTxtIdVendas, mml_jTxtData, mml_jcboClientes, mml_jcboVendedor, mml_jBtnConfirmar, mml_jBtnCancelar, mml_jBtnAlterarProd, mml_jBtnExcluirProd, mml_jBtnIncluirProd);
-        Util.habilitar(false, mml_jBtnIncluir, mml_jBtnPesquisar);
+        Util.habilitar(false, mml_jBtnIncluir, mml_jBtnPesquisar, mml_jBtnAlterar);
          mml_jTxtIdVendas.grabFocus();
         incluir = true;
     }//GEN-LAST:event_mml_jBtnIncluirActionPerformed
@@ -422,8 +425,8 @@ public class MmljDlgVendas extends javax.swing.JDialog {
     private void mml_jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jBtnAlterarActionPerformed
         // TODO add your handling code here:
         Util.habilitar(true, mml_jTxtIdVendas, mml_jTxtValor, mml_jTxtData, mml_jcboClientes, mml_jcboVendedor, mml_jBtnConfirmar, mml_jBtnCancelar);
-        Util.habilitar(false, mml_jBtnIncluir, mml_jBtnPesquisar);
-        Util.limpar(mml_jTxtIdVendas, mml_jTxtValor, mml_jTxtData, mml_jcboClientes, mml_jcboVendedor);
+        Util.habilitar(false, mml_jBtnIncluir, mml_jBtnPesquisar, mml_jBtnAlterar);
+        //Util.limpar(mml_jTxtIdVendas, mml_jTxtValor, mml_jTxtData, mml_jcboClientes, mml_jcboVendedor);
         mml_jcboClientes.grabFocus();
         incluir = false;
     }//GEN-LAST:event_mml_jBtnAlterarActionPerformed
@@ -432,7 +435,7 @@ public class MmljDlgVendas extends javax.swing.JDialog {
         // TODO add your handling code here:
         
         MmljDlgVendasCarros jDlgMmlVendasProdutos = new MmljDlgVendasCarros(null, true);
-        jDlgMmlVendasProdutos.setTelaAnterior(this);
+        jDlgMmlVendasProdutos.setTelaAnterior(this, true);
         jDlgMmlVendasProdutos.setVisible(true);
         soma();
     }//GEN-LAST:event_mml_jBtnIncluirProdActionPerformed
@@ -440,7 +443,7 @@ public class MmljDlgVendas extends javax.swing.JDialog {
     private void mml_jBtnAlterarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mml_jBtnAlterarProdActionPerformed
         // TODO add your handling code here:
        MmljDlgVendasCarros jDlgMmlVendasProdutos = new MmljDlgVendasCarros(null, true);
-        jDlgMmlVendasProdutos.setTelaAnterior(this);
+        jDlgMmlVendasProdutos.setTelaAnterior(this, false);
         jDlgMmlVendasProdutos.setVisible(true);
     }//GEN-LAST:event_mml_jBtnAlterarProdActionPerformed
 

@@ -93,6 +93,11 @@ public class JDlgConsultausuarios extends javax.swing.JDialog {
         });
 
         jButton1.setText("Imprimir");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -187,6 +192,40 @@ public class JDlgConsultausuarios extends javax.swing.JDialog {
         }
         
     }//GEN-LAST:event_jBtnConsultaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+try {
+        javax.swing.JTable table = jTable1;
+
+        java.awt.print.PrinterJob job = java.awt.print.PrinterJob.getPrinterJob();
+        job.setJobName("RelatorioClientes");
+
+        job.setPrintable(new java.awt.print.Printable() {
+            public int print(java.awt.Graphics g, java.awt.print.PageFormat pf, int pageIndex) {
+
+                if (pageIndex > 0) {
+                    return java.awt.print.Printable.NO_SUCH_PAGE;
+                }
+
+                java.awt.Graphics2D g2 = (java.awt.Graphics2D) g;
+                g2.translate(pf.getImageableX(), pf.getImageableY());
+                g2.scale(0.85, 0.85); 
+
+                table.print(g2);
+
+                return java.awt.print.Printable.PAGE_EXISTS;
+            }
+        });
+
+        if (job.printDialog()) {
+            job.print(); 
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        javax.swing.JOptionPane.showMessageDialog(null, "Erro ao imprimir: " + e.getMessage());
+    }        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
